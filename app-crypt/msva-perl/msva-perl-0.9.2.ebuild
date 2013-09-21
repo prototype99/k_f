@@ -14,7 +14,7 @@ if [[ ${PV} == "9999" ]] ; then
 		http://http-git.tremily.us/monkeysphere-validation-agent.git"
 	SRC_URI=""
 else
-	MY_P="${PN}_{$PV}"
+	MY_P="${PN}_${PV}"
 	SRC_URI="http://archive.monkeysphere.info/debian/pool/monkeysphere/m/${PN}/${MY_P}.orig.tar.gz"
 fi
 
