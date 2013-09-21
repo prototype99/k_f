@@ -42,6 +42,7 @@ RDEPEND="
 	dev-perl/regexp-common
 	"
 DEPEND="
+	app-portage/g-cpan
 	virtual/perl-Module-Build
 	test? ( ${RDEPEND} )
 	"
