@@ -24,7 +24,7 @@ HOMEPAGE="http://web.monkeysphere.info/validation-agent/"
 LICENSE="GPL-3"
 SLOT="0"
 KEYWORDS="~amd64 ~x86"
-IUSE="test"
+IUSE="X"
 
 #RESTRICT="test" # ssh connection failed
 
@@ -44,17 +44,21 @@ RDEPEND="
 DEPEND="
 	app-portage/g-cpan
 	virtual/perl-Module-Build
-	test? ( ${RDEPEND} )
 	"
 
 src_prepare() {
 	epatch "${FILESDIR}/01_Makefile.patch"
 	sed -i "s/##VERSION##/${PV}/" Makefile
 	epatch "${FILESDIR}/02_Makefile.patch"
-	sed -i "s/##PERL##/..\/..\/image\/usr\/local\/lib64\/site_perl/" Makefile
+	sed -i 's/##PERL##/${ED}usr\/local\/lib\/site_perl/' Makefile
 }
 
 src_install() {
     mytargets="install doc=/usr/share/doc/${P}"
 	perl-module_src_install
+}
+
+pkg_postinst()
+{
+	use 'X' && elog "You seem to be using X. Make sure to edit Xsessions to start msva-perl"
 }

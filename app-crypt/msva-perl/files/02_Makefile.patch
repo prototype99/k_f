@@ -10,8 +10,8 @@
 +	install -m 0444 -D Crypt/Monkeysphere/MSVA/MarginalUI.pm ##PERL##/Crypt/Monkeysphere/MSVA/MarginalUI.pm
 +	install -m 0444 Crypt/Monkeysphere/MSVA/*.pm ##PERL##/Crypt/Monkeysphere/MSVA
 +	install -m 0444 -D Net/Server/MSVA.pm ##PERL##/Net/Server/MSVA.pm
-+	install -m 0555 -D msva-perl ../../image/usr/bin/msva-perl
-+	install -m 0555 -D msva-query-agent ../../image/usr/bin/msva-query-agent
++	install -m 0555 -D msva-perl ${ED}/usr/bin/msva-perl
++	install -m 0555 -D msva-query-agent ${ED}/usr/bin/msva-query-agent
 +
  .PHONY: upstream-tag debian-package debian-tag all clean
 +
