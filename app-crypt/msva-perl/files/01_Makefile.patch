@@ -1,0 +1,13 @@
+--- Makefile	2013-09-22 21:13:46.000000000 +0200
++++ Makefile.new	2013-09-22 21:15:22.000000000 +0200
+@@ -5,8 +5,8 @@
+ # © 2010 Daniel Kahn Gillmor <dkg@fifthhorseman.net>
+ # Licensed under GPL v3 or later
+ 
+-VERSION := $(shell dpkg-parsechangelog -lChangelog | grep ^Version: | cut -f2 -d\ )
+-DEBIAN_VERSION=`dpkg-parsechangelog | grep ^Version: | cut -f2 -d\ `
++VERSION="##VERSION##"
++DEBIAN_VERSION="##VERSION##"
+ 
+ MANPAGES=msva-perl.1 msva-query-agent.1
+ 
