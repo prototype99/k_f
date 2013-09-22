@@ -47,7 +47,14 @@ DEPEND="
 	test? ( ${RDEPEND} )
 	"
 
+src_prepare() {
+	epatch "${FILESDIR}/01_Makefile.patch"
+	sed -i "s/##VERSION##/${PV}/" Makefile
+	epatch "${FILESDIR}/02_Makefile.patch"
+	sed -i "s/##PERL##/..\/..\/image\/usr\/local\/lib64\/site_perl/" Makefile
+}
+
 src_install() {
-	mytargets="install --install-path doc=/usr/share/doc/${P}"
+    mytargets="install doc=/usr/share/doc/${P}"
 	perl-module_src_install
 }
