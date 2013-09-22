@@ -22,7 +22,7 @@ KEYWORDS="~amd64 ~x86"
 IUSE=""
 
 RDEPEND="app-crypt/msva-perl"
-DEPEND="www-client/firefox-bin app-arch/unzip"
+DEPEND="|| ( www-client/firefox-bin www-client/firefox ) app-arch/unzip"
 
 src_unpack() {
 	unzip -d "${S}" "${DISTDIR}/monkeysphere.xpi"
