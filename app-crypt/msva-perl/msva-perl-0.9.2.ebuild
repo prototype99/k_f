@@ -56,9 +56,12 @@ src_prepare() {
 src_install() {
     mytargets="install doc=/usr/share/doc/${P}"
 	perl-module_src_install
+	mkdir -p "${D}/etc/profile.d/"
+	cp "${FILESDIR}/10-msva-perl.sh" "${D}/etc/profile.d/"
+	chmod 0555  "${D}/etc/profile.d/10-msva-perl.sh"
 }
 
 pkg_postinst()
 {
-	use 'X' && elog "You seem to be using X. Make sure to edit Xsessions to start msva-perl"
+	use 'X' && elog "You seem to be using X. msva-perl has been set up to invoke and set env variables in /etc/profile.d/10-msva-perl.sh. If using another window manager you might want to set this for your window manager."
 }

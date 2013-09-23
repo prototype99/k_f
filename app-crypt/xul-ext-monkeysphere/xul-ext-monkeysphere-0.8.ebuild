@@ -25,7 +25,7 @@ DEPEND="|| ( www-client/firefox-bin www-client/firefox ) app-arch/unzip media-gf
 
 src_install(){
 	local emid=$(sed -n 's/.*<em:id>\(.*\)<\/em:id>.*/\1/p' ${S}/install.rdf | head -1)
-	local cleanup="Makefile install.rdf.template monkeysphere.xpi"
+	local cleanup="NOTES Makefile install.rdf.template monkeysphere.xpi chrome/content/*.svg"
 	for i in $cleanup; do rm ${S}/$i; done; 
 	mkdir -p "${D}/opt/firefox/extensions/${emid}"
 	cp -r ${S}/* "${D}/opt/firefox/extensions/${emid}/"
