@@ -29,7 +29,7 @@ IUSE="X"
 #RESTRICT="test" # ssh connection failed
 
 RDEPEND="
-	perl-gcpan/Crypt-X509
+	dev-perl/Crypt-X509
 	dev-perl/File-HomeDir
 	dev-perl/File-ShareDir
 	dev-perl/GnuPG-Interface
@@ -42,7 +42,6 @@ RDEPEND="
 	dev-perl/regexp-common
 	"
 DEPEND="
-	app-portage/g-cpan
 	virtual/perl-Module-Build
 	"
 
