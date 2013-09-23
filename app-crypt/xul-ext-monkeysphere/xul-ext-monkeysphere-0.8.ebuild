@@ -11,25 +11,22 @@ if [[ ${PV} == "9999" ]] ; then
     EGIT_REPO_URI="git://git.monkeysphere.info/${PN}"
     SRC_URI=""
 else
-    SRC_URI="http://archive.monkeysphere.info/xul-ext/monkeysphere.xpi"
+    SRC_URI="http://archive.monkeysphere.info/debian/pool/monkeysphere/x/xul-ext-monkeysphere/${PN}_${PV}.orig.tar.gz"
 fi
 
 
-S=${WORKDIR}
 LICENSE="GPL-3"
 SLOT="0"
 KEYWORDS="~amd64 ~x86"
 IUSE=""
 
 RDEPEND="app-crypt/msva-perl"
-DEPEND="|| ( www-client/firefox-bin www-client/firefox ) app-arch/unzip"
-
-src_unpack() {
-	unzip -d "${S}" "${DISTDIR}/monkeysphere.xpi"
-}
+DEPEND="|| ( www-client/firefox-bin www-client/firefox ) app-arch/unzip media-gfx/inkscape"
 
 src_install(){
 	local emid=$(sed -n 's/.*<em:id>\(.*\)<\/em:id>.*/\1/p' ${S}/install.rdf | head -1)
+	local cleanup="Makefile install.rdf.template monkeysphere.xpi"
+	for i in $cleanup; do rm ${S}/$i; done; 
 	mkdir -p "${D}/opt/firefox/extensions/${emid}"
-	unzip -d "${D}/opt/firefox/extensions/${emid}" "${DISTDIR}/monkeysphere.xpi"
+	cp -r ${S}/* "${D}/opt/firefox/extensions/${emid}/"
 }
