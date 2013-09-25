@@ -20,6 +20,7 @@ DEPEND="app-doc/xmltoman
 
 src_prepare(){
 	epatch "${FILESDIR}/01_remove_strip.patch"
+	epatch "${FILESDIR}/02_memset.patch"
 }
 
 src_install(){
