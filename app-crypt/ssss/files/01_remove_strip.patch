@@ -1,0 +1,11 @@
+diff -r 9f9e32868313 Makefile
+--- a/Makefile	Wed Sep 25 20:15:24 2013 +0200
++++ b/Makefile	Wed Sep 25 20:16:38 2013 +0200
+@@ -2,7 +2,6 @@
+ 
+ ssss-split: ssss.c
+ 	$(CC) -W -Wall -O2 -lgmp -o ssss-split ssss.c
+-	strip ssss-split
+ 
+ ssss-combine: ssss-split
+ 	ln -f ssss-split ssss-combine
