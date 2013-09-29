@@ -37,7 +37,7 @@ src_install(){
 
  	if has_version '>=www-client/firefox-1.0'; then
         einfo "Source version of Firefox found"
-        extinstalldir="${D}/usr/lib64/firefox/browser/extensions/${emid}  $extinstalldir"
+        extinstalldir="${D}/usr/lib/firefox/browser/extensions/${emid}  $extinstalldir"
     fi
 
 	
