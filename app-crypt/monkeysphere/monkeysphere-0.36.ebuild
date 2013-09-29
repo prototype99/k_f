@@ -13,13 +13,7 @@ SLOT="0"
 KEYWORDS="~x86 ~amd64"
 IUSE=""
 
-if [[ ${PV} == "9999" ]]
-	then
-		EGIT_REPO_URI="git://git.monkeysphere.info/${PN}"
-		inherit git-2
-	else
-		SRC_URI="http://archive.${PN}.info/debian/pool/${PN}/${PN::1}/${PN}/${PN}_${PV}.orig.tar.gz"
-fi
+SRC_URI="http://archive.${PN}.info/debian/pool/${PN}/${PN::1}/${PN}/${PN}_${PV}.orig.tar.gz"
 
 DEPEND=""
 RDEPEND="${DEPEND}
