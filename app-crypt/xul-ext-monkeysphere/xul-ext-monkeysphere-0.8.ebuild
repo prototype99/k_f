@@ -35,10 +35,10 @@ src_install(){
 		extinstalldir="${D}/opt/firefox/extensions/${emid}  $extinstalldir"
 	fi
 
- 	if has_version '>=www-client/firefox-1.0'; then
-        einfo "Source version of Firefox found"
-        extinstalldir="${D}/usr/lib/firefox/browser/extensions/${emid}  $extinstalldir"
-    fi
+	if has_version '>=www-client/firefox-1.0'; then
+		einfo "Source version of Firefox found"
+		extinstalldir="${D}/usr/lib/firefox/browser/extensions/${emid}  $extinstalldir"
+	fi
 
 	
 	for i in $extinstalldir; do
