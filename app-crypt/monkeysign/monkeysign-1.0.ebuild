@@ -28,4 +28,5 @@ app-crypt/gnupg"
 
 src_prepare(){
 	epatch "${FILESDIR}/01_PIL-image.patch"
+	epatch "${FILESDIR}/02_basename.patch"
 }
