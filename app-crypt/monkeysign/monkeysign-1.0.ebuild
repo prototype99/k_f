@@ -20,9 +20,12 @@ SRC_URI="http://cdn.debian.net/debian/pool/main/m/${PN}/${PN}_${PV}.tar.gz"
 DEPEND=""
 RDEPEND="${DEPEND}
 dev-python/pygtk
-dev-python/imaging
+virtual/python-imaging
 media-gfx/zbar[python,gtk,imagemagick]
 media-gfx/qrencode-python
 dev-python/setuptools
 app-crypt/gnupg"
 
+src_prepare(){
+	epatch "${FILESDIR}/01_PIL-image.patch"
+}
