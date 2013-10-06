@@ -1,7 +1,7 @@
 #!/bin/bash
 
 MSVA_PORT=$RANDOM
-let "MSVA_PORT %= 999"
+let "MSVA_PORT %= 1000"
 let "MSVA_PORT += 33000"
 export MSVA_PORT
 msva-perl >/dev/null&
