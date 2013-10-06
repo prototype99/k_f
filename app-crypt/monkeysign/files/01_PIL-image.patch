@@ -1,0 +1,12 @@
+diff -r ee692c5ecb0b monkeysign/gtkui.py
+--- a/monkeysign/gtkui.py	Tue Oct 01 00:07:14 2013 +0200
++++ b/monkeysign/gtkui.py	Tue Oct 01 00:07:58 2013 +0200
+@@ -24,7 +24,7 @@
+ import gobject
+ import pygtk; pygtk.require('2.0')
+ import pango
+-import Image
++from PIL import Image
+ import zbar, zbarpygtk
+ 
+ from qrencode import encode as _qrencode
