@@ -6,16 +6,19 @@ EAPI="5"
 
 inherit perl-module
 
-MY_P="${PN}_${PV}"
-SRC_URI="http://archive.monkeysphere.info/debian/pool/monkeysphere/m/${PN}/${MY_P}.orig.tar.gz"
+SRC_URI="http://archive.monkeysphere.info/debian/pool/monkeysphere/m/monkeysphere/monkeysphere_${PV}.orig.tar.gz"
 
 DESCRIPTION="Monkeysphere public key validation daemon"
 HOMEPAGE="http://web.monkeysphere.info/validation-agent/"
 
 LICENSE="GPL-3"
 SLOT="0"
-KEYWORDS="~amd64 ~x86"
 IUSE="X"
+DEPEND="
+	virtual/perl-Module-Build
+	"
+	
+KEYWORDS="~amd64 ~x86"
 
 RDEPEND="
 	dev-perl/Crypt-X509
@@ -29,9 +32,6 @@ RDEPEND="
 	dev-perl/libwww-perl
 	dev-perl/net-server
 	dev-perl/regexp-common
-	"
-DEPEND="
-	virtual/perl-Module-Build
 	"
 
 src_prepare() {
