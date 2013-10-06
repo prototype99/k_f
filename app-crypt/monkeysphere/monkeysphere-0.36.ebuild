@@ -15,7 +15,9 @@ SRC_URI="http://archive.monkeysphere.info/debian/pool/monkeysphere/m/monkeyspher
 DEPEND=""
 KEYWORDS="~x86 ~amd64"
 DOCS=(README Changelog)
-RDEPEND="app-crypt/gnupg
+RDEPEND="
+	app-crypt/gnupg
+	net-analyzer/netcat
 	dev-perl/Crypt-OpenSSL-RSA
 	dev-perl/Digest-SHA1
 	app-misc/lockfile-progs"
