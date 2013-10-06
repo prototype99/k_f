@@ -3,7 +3,7 @@
 # $Header: $
 
 EAPI=5
-inherit user
+inherit eutils user
 
 DESCRIPTION="Leverage the OpenPGP web of trust for OpenSSH and Web authentication"
 HOMEPAGE="http://web.monkeysphere.info/"
@@ -24,15 +24,18 @@ pkg_setup()
 {
 	ebegin "Creating named group and user"
 	enewgroup monkeysphere
-	enewuser monkeysphere -1 /bin/sh /var/lib/monkeysphere monkeysphere
+	enewuser monkeysphere -1 -1 /var/lib/monkeysphere monkeysphere
 	mkdir -p /var/lib/monkeysphere || die
 	chown root:monkeysphere /var/lib/monkeysphere || die
 	chmod 755 /var/lib/monkeysphere || die
+	mkdir /var/lib/monkeysphere/.gnupg
+	chown monkeysphere:monkeysphere /var/lib/monkeysphere/.gnupg 
 	eend ${?}
 }
 
 src_prepare()
 {
+	epatch "${FILESDIR}/01_default_shell.patch"
 	sed -i "s#share/doc/monkeysphere#share/doc/${PF}#" Makefile || die
 }
 
