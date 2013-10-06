@@ -25,10 +25,8 @@ pkg_setup()
 	ebegin "Creating named group and user"
 	enewgroup monkeysphere
 	enewuser monkeysphere -1 /bin/sh /var/lib/monkeysphere monkeysphere
-	mkdir -p /var/lib/monkeysphere/authentication/sphere || die
+	mkdir -p /var/lib/monkeysphere || die
 	chown root:monkeysphere /var/lib/monkeysphere || die
-	chown root:monkeysphere /var/lib/monkeysphere/authentication || die
-	chown monkeysphere:monkeysphere /var/lib/monkeysphere/authentication/sphere || die
 	chmod 755 /var/lib/monkeysphere || die
 	eend ${?}
 }
@@ -36,4 +34,8 @@ pkg_setup()
 src_prepare()
 {
 	sed -i "s#share/doc/monkeysphere#share/doc/${PF}#" Makefile || die
+}
+
+pkg_postinst(){
+	monkeysphere-authentication setup
 }
