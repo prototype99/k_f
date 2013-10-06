@@ -28,8 +28,8 @@ pkg_setup()
 	mkdir -p /var/lib/monkeysphere || die
 	chown root:monkeysphere /var/lib/monkeysphere || die
 	chmod 755 /var/lib/monkeysphere || die
-	mkdir /var/lib/monkeysphere/.gnupg
-	chown monkeysphere:monkeysphere /var/lib/monkeysphere/.gnupg 
+	mkdir /var/lib/monkeysphere/.gnupg || die
+	chown monkeysphere:monkeysphere /var/lib/monkeysphere/.gnupg || die
 	eend ${?}
 }
 
