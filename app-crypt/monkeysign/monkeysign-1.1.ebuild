@@ -15,7 +15,7 @@ SLOT="0"
 KEYWORDS="~x86 ~amd64"
 IUSE=""
 
-SRC_URI="http://cdn.debian.net/debian/pool/main/m/${PN}/${PN}_${PV}.tar.gz"
+SRC_URI="http://cdn.debian.net/debian/pool/main/m/monkeysign/monkeysign_${PV}.tar.gz"
 
 DEPEND=""
 RDEPEND="${DEPEND}
