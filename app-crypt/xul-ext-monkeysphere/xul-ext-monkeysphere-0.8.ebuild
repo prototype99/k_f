@@ -1,6 +1,6 @@
 EAPI=5
 
-inherit base eutils
+inherit eutils
 
 DESCRIPTION="Iceweasel/Firefox extension for using Monkeysphere on the web"
 HOMEPAGE="http://web.monkeysphere.info/"
