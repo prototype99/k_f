@@ -3,38 +3,34 @@
 # $Header: $
 
 EAPI=5
-inherit base
+inherit user
 
 DESCRIPTION="Leverage the OpenPGP web of trust for OpenSSH and Web authentication"
 HOMEPAGE="http://web.monkeysphere.info/"
 
 LICENSE="GPL-3"
 SLOT="0"
-KEYWORDS="~x86 ~amd64"
 IUSE=""
-
 SRC_URI="http://archive.${PN}.info/debian/pool/${PN}/${PN::1}/${PN}/${PN}_${PV}.orig.tar.gz"
-
 DEPEND=""
-RDEPEND="${DEPEND}
-app-crypt/gnupg
-dev-perl/Crypt-OpenSSL-RSA
-dev-perl/Digest-SHA1
-app-misc/lockfile-progs"
-
-src_prepare()
-{
-	sed -i "s#share/doc/monkeysphere#share/doc/${PF}#" Makefile
-}
+KEYWORDS="~x86 ~amd64"
+DOCS=(README Changelog COPYING)
+RDEPEND="app-crypt/gnupg
+	dev-perl/Crypt-OpenSSL-RSA
+	dev-perl/Digest-SHA1
+	app-misc/lockfile-progs"
 
 pkg_setup()
 {
 	ebegin "Creating named group and user"
 	enewgroup monkeysphere
 	enewuser monkeysphere -1 /bin/sh /var/lib/monkeysphere monkeysphere
-	chown root:root /var/lib/monkeysphere
-	chmod 751 /var/lib/monkeysphere
+	chown root:root /var/lib/monkeysphere || die
+	chmod 751 /var/lib/monkeysphere || die
 	eend ${?}
 }
 
-DOCS=(README Changelog COPYING)
+src_prepare()
+{
+	sed -i "s#share/doc/monkeysphere#share/doc/${PF}#" Makefile || die
+}
