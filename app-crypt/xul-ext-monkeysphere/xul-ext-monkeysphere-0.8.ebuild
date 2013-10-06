@@ -15,7 +15,6 @@ IUSE=""
 RDEPEND="app-crypt/msva-perl"
 DEPEND="
 	|| ( www-client/firefox-bin www-client/firefox ) 
-	app-arch/unzip
 	media-gfx/inkscape"
 
 src_install(){
