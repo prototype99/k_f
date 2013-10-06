@@ -3,7 +3,7 @@
 # $Header: $
 
 EAPI=5
-inherit base
+inherit eutils
 
 DESCRIPTION="Shamir's secret sharing scheme"
 HOMEPAGE="http://point-at-infinity.org/ssss/"
@@ -13,7 +13,7 @@ SLOT="0"
 KEYWORDS="~x86 ~amd64"
 IUSE=""
 
-SRC_URI="http://point-at-infinity.org/ssss/${PN}-${PV}.tar.gz"
+SRC_URI="http://point-at-infinity.org/ssss/ssss-${PV}.tar.gz"
 
 DEPEND="app-doc/xmltoman
         dev-libs/gmp"
