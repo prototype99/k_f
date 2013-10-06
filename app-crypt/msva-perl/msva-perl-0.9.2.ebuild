@@ -17,7 +17,7 @@ IUSE="X"
 DEPEND="
 	virtual/perl-Module-Build
 	"
-	
+
 KEYWORDS="~amd64 ~x86"
 
 RDEPEND="
@@ -44,9 +44,9 @@ src_prepare() {
 src_install() {
     mytargets="install doc=/usr/share/doc/${P}"
 	perl-module_src_install
-	mkdir -p "${D}/etc/profile.d/"
-	cp "${FILESDIR}/10-msva-perl.sh" "${D}/etc/profile.d/"
-	chmod 0555  "${D}/etc/profile.d/10-msva-perl.sh"
+	mkdir -p "${D}/etc/profile.d/" || die
+	cp "${FILESDIR}/10-msva-perl.sh" "${D}/etc/profile.d/" || die
+	chmod 0555  "${D}/etc/profile.d/10-msva-perl.sh" || die
 }
 
 pkg_postinst()
