@@ -14,7 +14,7 @@ IUSE=""
 SRC_URI="http://archive.${PN}.info/debian/pool/${PN}/${PN::1}/${PN}/${PN}_${PV}.orig.tar.gz"
 DEPEND=""
 KEYWORDS="~x86 ~amd64"
-DOCS=(README Changelog COPYING)
+DOCS=(README Changelog)
 RDEPEND="app-crypt/gnupg
 	dev-perl/Crypt-OpenSSL-RSA
 	dev-perl/Digest-SHA1
