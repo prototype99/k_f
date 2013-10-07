@@ -17,7 +17,7 @@ KEYWORDS="~x86 ~amd64"
 DOCS=(README Changelog)
 RDEPEND="
 	app-crypt/gnupg
-	net-analyzer/netcat
+	|| ( net-analyzer/netcat net-misc/socat )
 	dev-perl/Crypt-OpenSSL-RSA
 	dev-perl/Digest-SHA1
 	app-misc/lockfile-progs"
