@@ -1,0 +1,15 @@
+diff -r 4a0bfe42f448 src/share/common
+--- a/src/share/common	Wed Oct 09 18:52:58 2013 +0200
++++ b/src/share/common	Wed Oct 09 18:54:16 2013 +0200
+@@ -921,6 +921,11 @@
+ 		continue
+ 		;;
+ 	    (" "*|$'\t'*)
++		
++		if [[ -z ${line// /} ]]; then
++	    		continue
++	    	fi
++
+ 		if [[ -z ${koptions[${nline}]} ]]; then
+ 	            koptions[${nline}]=$(echo $line | sed 's/^[ 	]*//;s/[ 	]$//;')
+ 		else
