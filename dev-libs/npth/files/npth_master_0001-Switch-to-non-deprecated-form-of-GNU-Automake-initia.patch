@@ -1,0 +1,29 @@
+From bfb43b855fa2023a24a3b045c613274eef6bfd9d Mon Sep 17 00:00:00 2001
+From: Christian Aistleitner <christian@quelltextlich.at>
+Date: Sun, 14 Jul 2013 12:26:36 +0200
+Subject: [PATCH 1/2] Switch to non-deprecated form of GNU Automake
+ initialization
+
+--
+
+Signed-off-by: Christian Aistleitner <christian@quelltextlich.at>
+---
+ configure.ac | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/configure.ac b/configure.ac
+index bd650c7..cbb63f4 100644
+--- a/configure.ac
++++ b/configure.ac
+@@ -73,7 +73,7 @@ VERSION=$PACKAGE_VERSION
+ AC_CONFIG_SRCDIR([src/npth.c])
+ AC_CONFIG_HEADERS([config.h])
+ AC_CONFIG_MACRO_DIR([m4])
+-AM_INIT_AUTOMAKE($PACKAGE, $VERSION)
++AM_INIT_AUTOMAKE
+ AM_MAINTAINER_MODE
+ AC_CANONICAL_HOST
+ 
+-- 
+1.8.1.5
+

@@ -1,0 +1,59 @@
+From c83f37c0b24671b3afd558f37b0da3b22e35ceef Mon Sep 17 00:00:00 2001
+From: Christian Aistleitner <christian@quelltextlich.at>
+Date: Sun, 14 Jul 2013 13:00:19 +0200
+Subject: [PATCH] Fix building with GNU Automake 1.13+
+
+* configure.ac: Force serial tests for GNU Automake 1.13+.
+(serial_tests): New.
+--
+
+GNU Automake switched the default test harness to parallel beginning
+with GNU Automake 1.13. Until we upgrade our tests, we force
+serial-tests beginning with GNU Automake 1.13.
+
+This commit is a minor adaption of libguestfs's (GPLv2+) commit
+a1c89bf03dd432f0e4c8c26fe01fd9b2a50df97e by Richard W.M. Jones.
+
+Signed-off-by: Christian Aistleitner <christian@quelltextlich.at>
+---
+ configure.ac | 24 +++++++++++++++++++++---
+ 1 file changed, 21 insertions(+), 3 deletions(-)
+
+diff --git a/configure.ac b/configure.ac
+index 01530e0..88cb4d8 100644
+--- a/configure.ac
++++ b/configure.ac
+@@ -66,9 +66,27 @@ VERSION=$PACKAGE_VERSION
+ AC_CONFIG_AUX_DIR([scripts])
+ AC_CONFIG_SRCDIR([sm/gpgsm.c])
+ AC_CONFIG_HEADER([config.h])
+-# Note: For automake 1.13 add the option
+-#          serial-tests
+-AM_INIT_AUTOMAKE([dist-bzip2 no-dist-gzip])
++
++dnl Initialize automake.  automake < 1.12 didn't have serial-tests and
++dnl gives an error if it sees this, but for automake >= 1.13
++dnl serial-tests is required so we have to include it.  Solution is to
++dnl test for the version of automake (by running an external command)
++dnl and provide it if necessary.  Note we have to do this entirely using
++dnl m4 macros since automake queries this macro by running
++dnl 'autoconf --trace'.
++m4_define([serial_tests], [
++    m4_esyscmd([automake --version | awk 'NR==1 {
++                       split ($NF, V_ARR, ".");
++                       V_INT=1000000*V_ARR[1]+1000*V_ARR[2]+V_ARR[3]
++                       if (V_INT >= 1013000)
++                         # GNU Automake is version 1.13 or newer
++                         print "serial-tests";
++                     }'
++    ])
++])
++
++dnl As we need expansion of the serial_tests macro, do not [quote] it.
++AM_INIT_AUTOMAKE([dist-bzip2 no-dist-gzip] serial_tests)
+ AC_CANONICAL_HOST
+ AB_INIT
+ 
+-- 
+1.8.1.5
+
