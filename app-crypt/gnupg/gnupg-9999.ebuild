@@ -6,7 +6,7 @@ EAPI=4
 
 inherit eutils autotools flag-o-matic user git-2
 
-DESCRIPTION="Npth: part of gnupg update"
+DESCRIPTION="The GNU Privacy Guard, a GPL pgp replacement"
 EGIT_REPO_URI="git://git.gnupg.org/${PN}.git"
 HOMEPAGE="http://gnupg.org/"
 

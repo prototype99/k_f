@@ -6,7 +6,7 @@ EAPI=4
 
 inherit autotools flag-o-matic user git-2
 
-DESCRIPTION="Npth: part of gnupg update"
+DESCRIPTION="nPth: New GNU Portable Threads Library"
 EGIT_REPO_URI="git://git.gnupg.org/${PN}.git"
 HOMEPAGE="http://gnupg.org/"
 
