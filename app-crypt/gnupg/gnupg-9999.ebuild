@@ -33,7 +33,6 @@ RDEPEND="${DEPEND}"
 
 src_prepare() {
 	epatch "${FILESDIR}/gnupg_master_0002-Fix-building-with-GNU-Automake-1.13.patch"
-	./autogen.sh
 }
 
 src_configure() {
@@ -45,6 +44,8 @@ src_configure() {
 			--datarootdir=/usr/local
 		)
 	fi
+
+	./autogen.sh
 
 	./configure \
 		${myconf2[@]} \
