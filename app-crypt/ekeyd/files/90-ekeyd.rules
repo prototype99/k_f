@@ -10,7 +10,7 @@
 
 ACTION=="add", SUBSYSTEM=="tty", ENV{ID_VENDOR_ID}=="20df", ENV{ID_MODEL_ID}=="0001", SYMLINK+="entropykey/$env{ID_SERIAL_SHORT}"
 
-ACTION=="add", SUBSYSTEM=="tty", ENV{ID_VENDOR_ID}=="20df", ENV{ID_MODEL_ID}=="0001", RUN+="/usr/sbin/ekeydctl add $env{DEVNAME} $env{ID_SERIAL_SHORT}"
+ACTION=="add", SUBSYSTEM=="tty", ENV{ID_VENDOR_ID}=="20df", ENV{ID_MODEL_ID}=="0001", RUN+="/usr/sbin/ekeydctl add /dev/entropykey/$env{ID_SERIAL_SHORT}"
 
 ACTION=="remove", SUBSYSTEM=="tty", ENV{ID_VENDOR_ID}=="20df", ENV{ID_MODEL_ID}=="0001", RUN+="/usr/sbin/ekeydctl remove $env{ID_SERIAL_SHORT}"
 
