@@ -13,16 +13,14 @@ SRC_URI="http://archive.ubuntu.com/ubuntu/pool/universe/e/ekeyd/ekeyd_${PV}.orig
 LICENSE="MIT GPL-2" # GPL-2 (only) for init script
 SLOT="0"
 KEYWORDS="~amd64 ~x86"
-IUSE="usb kernel_linux munin minimal"
-REQUIRED_USE="minimal? ( !munin !usb )"
+IUSE="kernel_linux munin minimal"
+REQUIRED_USE="minimal? ( !munin )"
 
-EKEYD_RDEPEND="dev-lang/lua
-		usb? ( virtual/libusb:0 )"
+EKEYD_RDEPEND="dev-lang/lua"
 EKEYD_DEPEND="${EKEYD_RDEPEND}"
 EKEYD_RDEPEND="${EKEYD_RDEPEND}
 	dev-lua/luasocket
 	kernel_linux? ( virtual/udev )
-	usb? ( !kernel_linux? ( sys-apps/usbutils ) )
 	munin? ( net-analyzer/munin )"
 
 RDEPEND="!minimal? ( ${EKEYD_RDEPEND} )
@@ -70,7 +68,7 @@ src_compile() {
 		LUA_V= LUA_INC= \
 		OSNAME=${osname} \
 		OPT="${CFLAGS}" \
-		BUILD_ULUSBD=$(use usb && echo yes || echo no) \
+		BUILD_ULUSBD=no \
 		$(use minimal && echo egd-linux)
 }
 
@@ -91,7 +89,7 @@ src_install() {
 	emake -C host \
 		DESTDIR="${D}" \
 		MANZCMD=cat MANZEXT= \
-		install-ekeyd $(use usb && echo install-ekey-ulusbd)
+		install-ekeyd
 
 	# We move the daemons around to avoid polluting the available
 	# commands.
@@ -100,14 +98,8 @@ src_install() {
 
 	newinitd "${FILESDIR}"/${PN}.init.2 ${PN}
 
-	if use usb && ! use kernel_linux; then
-		newinitd "${FILESDIR}"/ekey-ulusbd.init.2 ekey-ulusbd
-		newconfd "${FILESDIR}"/ekey-ulusbd.conf.2 ekey-ulusbd
-	fi
-
 	if use kernel_linux; then
 		local rules="${FILESDIR}/90-ekeyd.rules"
-
 		udev_newrules ${rules} 90-${PN}.rules
 	fi
 
@@ -154,21 +146,6 @@ pkg_postinst() {
 	elog "and it'll be looking for /etc/entropykey/identifier.conf"
 	elog ""
 
-	if use usb; then
-		if use kernel_linux; then
-			elog "You're going to use the userland USB daemon, the udev rules"
-			elog "will be used accordingly. If you want to use the CDC driver"
-			elog "please disable the usb USE flag."
-		else
-			elog "You're going to use the userland USB daemon, since your OS"
-			elog "does not support udev, you should start the ekey-ulusbd"
-			elog "service before ekeyd."
-		fi
-
-		ewarn "The userland USB daemon has multiple known issues. If you can,"
-		ewarn "please consider disabling the 'usb' USE flag and instead use the"
-		ewarn "CDC-ACM access method."
-	else
 		if use kernel_linux; then
 			elog "Some versions of Linux have a faulty CDC ACM driver that stops"
 			elog "EntropyKey from working properly; please check the compatibility"
@@ -180,5 +157,4 @@ pkg_postinst() {
 		elog ""
 		elog "If you're unsure about the working state of the CDC ACM driver"
 		elog "enable the usb USE flag and use the userland USB daemon"
-	fi
 }
