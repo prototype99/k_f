@@ -38,6 +38,9 @@ src_prepare() {
 		-e 's:^CAMLINCLUDE= -I lib -I bdb$:CAMLINCLUDE= -I lib -I bdb -I +cryptokit:g' \
 		-e 's:-Werror-implicit-function-declaration::g' \
 		Makefile bdb/Makefile || die
+	sed -i \
+		-e 's:/usr/sbin/sks:/usr/bin/sks:g' \
+		sks_build.sh || die
 }
 
 src_compile() {
