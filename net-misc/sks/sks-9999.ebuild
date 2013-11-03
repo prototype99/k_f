@@ -100,5 +100,7 @@ pkg_postinst() {
 	einfo "Important: It is strongly recommended to set up SKS behind a"
 	einfo "reverse proxy. Instructions on properly configuring SKS can be"
 	einfo "found at https://bitbucket.org/skskeyserver/sks-keyserver/wiki/Peering"
+	einfo "If you want SKS to update its KeyDB statistics more often you can add a crontab entry like:"
+	einfo "25 * * * * pkill -USR2 sks || exit 1"
 }
 
