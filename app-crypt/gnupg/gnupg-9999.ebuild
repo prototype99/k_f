@@ -13,7 +13,7 @@ HOMEPAGE="http://gnupg.org/"
 LICENSE="GPL-2"
 SLOT="2.1"
 KEYWORDS="~amd64 ~x86"
-IUSE="localprefix"
+IUSE="+localprefix"
 
 REQUIRED_USE=""
 
@@ -27,6 +27,7 @@ COMMON_DEPEND_LIBS="
 
 DEPEND="
 	${COMMON_DEPEND_LIBS}
+	net-nds/openldap
 	media-gfx/transfig
 	"
 RDEPEND="${DEPEND}"
@@ -45,12 +46,12 @@ src_configure() {
 		)
 	fi
 
-	./autogen.sh
+	./autogen.sh || die
 
 	./configure \
 		${myconf2[@]} \
 		--enable-maintainer-mode \
 		--enable-symcryptrun \
 		--enable-mailto \
-		--enable-gpgtar
+		--enable-gpgtar || die
 }
