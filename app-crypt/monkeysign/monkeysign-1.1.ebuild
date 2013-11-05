@@ -13,7 +13,7 @@ HOMEPAGE="http://web.monkeysphere.info/"
 LICENSE="GPL-3"
 SLOT="0"
 KEYWORDS="~x86 ~amd64"
-IUSE=""
+IUSE="gnome"
 
 SRC_URI="http://cdn.debian.net/debian/pool/main/m/monkeysign/monkeysign_${PV}.tar.gz"
 
@@ -24,8 +24,16 @@ RDEPEND="
 	media-gfx/zbar[python,gtk,imagemagick]
 	media-gfx/qrencode-python
 	dev-python/setuptools
-	app-crypt/gnupg"
+	app-crypt/gnupg
+	gnome? ( x11-themes/gnome-icon-theme )
+"
 
 src_prepare(){
 	epatch "${FILESDIR}/02_basename.patch"
+}
+
+pkg_postinst()
+{
+	use gnome && cp ${FILESDIR}/monkeysign.desktop /usr/share/applications/ || die	
+	update-desktop-database || die
 }
