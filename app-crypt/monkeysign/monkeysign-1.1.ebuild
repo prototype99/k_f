@@ -35,5 +35,5 @@ src_prepare(){
 pkg_postinst()
 {
 	use gnome && cp ${FILESDIR}/monkeysign.desktop /usr/share/applications/ || die	
-	update-desktop-database || die
+	use gnome && update-desktop-database || die
 }
