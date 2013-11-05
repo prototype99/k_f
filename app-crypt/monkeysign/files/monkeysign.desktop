@@ -1,10 +1,10 @@
 [Desktop Entry]
 Encoding=UTF-8
 Version=1.1
-Name=Monkeysign
-Comment=Monkeysign
+Name=Monkeyscan
+Comment=Monkeyscan part of monkeysign
 Categories=GTK;GNOME;Application;Internet;Network;Security;Utility;
-Exec=/usr/bin/monkeysign
+Exec=/usr/bin/monkeyscan
 Icon=format-text-direction-ltr.png
 Terminal=false
 Type=Application
