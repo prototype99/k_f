@@ -16,6 +16,7 @@ KEYWORDS="~amd64 ~x86"
 IUSE="+localprefix"
 
 REQUIRED_USE=""
+WANT_AUTOMAKE="1.13"
 
 COMMON_DEPEND_LIBS="
     >=dev-libs/libassuan-2.1
@@ -31,6 +32,9 @@ DEPEND="
 	media-gfx/transfig
 	"
 RDEPEND="${DEPEND}"
+
+BDEPEND="
+	${DEPEND}"
 
 src_prepare() {
 	epatch "${FILESDIR}/gnupg_master_0002-Fix-building-with-GNU-Automake-1.13.patch"
