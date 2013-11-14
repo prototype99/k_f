@@ -16,7 +16,7 @@ IUSE="systemd optimize test"
 
 DEPEND="dev-lang/ocaml
 		dev-ml/cryptokit
-		sys-libs/db:5.2"
+		sys-libs/db:4.8"
 RDEPEND="${DEPEND}"
 
 pkg_setup() {
@@ -26,6 +26,8 @@ pkg_setup() {
 }
 
 src_prepare() {
+	epatch "${FILESDIR}/0001_ECC_OID_fix_x86.patch";
+
 	cp Makefile.local.unused Makefile.local || die
 	sed -i \
 		-e "s:^BDBLIB=.*$:BDBLIB=-L/usr/$(get_libdir):g" \
@@ -91,12 +93,19 @@ pkg_postinst() {
 	einfo "to be in place before doing the database build, or the BDB"
 	einfo "environment has to be manually cleared from both KDB and PTree."
 	einfo "The same applies if you are upgrading to this version with an existing KDB/Ptree,"
-	einfo "using another version of BDB than 5.2; you need to clear the environment"
+	einfo "using another version of BDB than 4.8; you need to clear the environment"
 	einfo "using e.g. db4.6_recover -h . and db4.6_checkpoint -1h . in both KDB and PTree"
 	einfo "Additionally a sample web interface has been installed as"
 	einfo "web.typical in /var/lib/sks that can be used by renaming it to web"
 	einfo "Important: It is strongly recommended to set up SKS behind a"
 	einfo "reverse proxy. Instructions on properly configuring SKS can be"
 	einfo "found at https://bitbucket.org/skskeyserver/sks-keyserver/wiki/Peering"
+	ewarn "Note when upgrading from earlier versions of SKS"
+	ewarn "===================="
+        ewarn "The default values for pagesize settings have changed. To continue"
+	ewarn "using an existing DB without rebuilding, explicit settings have to be"
+	ewarn "added to the sksconf file."
+	ewarn "pagesize:       4"
+	ewarn "ptree_pagesize: 1"
 }
 
