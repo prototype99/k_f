@@ -1,4 +1,4 @@
-# Copyright 1999-2012 Gentoo Foundation
+# Copyright 1999-2013 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/net-misc/sks/sks-1.1.2.ebuild,v 1.4 2012/02/07 00:34:06 kingtaco Exp $
 
@@ -47,7 +47,7 @@ src_prepare() {
 
 src_compile() {
 	emake dep
-	emake -j1 all
+	emake all
 	if use optimize; then
 		emake all.bc
 	fi
@@ -74,10 +74,10 @@ src_install() {
 	use systemd && systemd_dounit "${FILESDIR}/sks-db.service"
 	use systemd && systemd_dounit "${FILESDIR}/sks-recon.service"
 
-	mkdir -p $D/var/lib/sks/web.typical
-	cp $S/sampleConfig/DB_CONFIG $D/var/lib/sks/DB_CONFIG.typical
-	cp $S/sampleConfig/sksconf.typical $D/var/lib/sks/sksconf.typical
-	cp $S/sampleWeb/HTML5/* $D/var/lib/sks/web.typical/
+	mkdir -p "$D/var/lib/sks/web.typical"
+	cp "$S/sampleConfig/DB_CONFIG" "$D/var/lib/sks/DB_CONFIG.typical"
+	cp "$S/sampleConfig/sksconf.typical" "$D/var/lib/sks/sksconf.typical"
+	cp "$S"/sampleWeb/HTML5/* "$D"/var/lib/sks/web.typical/
 
 	keepdir /var/lib/sks
 }
@@ -102,10 +102,9 @@ pkg_postinst() {
 	einfo "found at https://bitbucket.org/skskeyserver/sks-keyserver/wiki/Peering"
 	ewarn "Note when upgrading from earlier versions of SKS"
 	ewarn "===================="
-        ewarn "The default values for pagesize settings have changed. To continue"
+	ewarn "The default values for pagesize settings have changed. To continue"
 	ewarn "using an existing DB without rebuilding, explicit settings have to be"
 	ewarn "added to the sksconf file."
 	ewarn "pagesize:       4"
 	ewarn "ptree_pagesize: 1"
 }
-
