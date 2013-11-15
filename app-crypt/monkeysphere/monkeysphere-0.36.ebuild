@@ -35,9 +35,9 @@ pkg_setup()
 
 src_prepare()
 {
-	epatch "${FILESDIR}/01_default_shell.patch"
-	epatch "${FILESDIR}/02_non_default_port.patch"
-	epatch "${FILESDIR}/03_userid_empty_line.patch"
+	epatch "${FILESDIR}/${P}_default_shell.patch"
+	epatch "${FILESDIR}/${P}_non_default_port.patch"
+	epatch "${FILESDIR}/${P}_userid_empty_line.patch"
 	sed -i "s#share/doc/monkeysphere#share/doc/${PF}#" Makefile || die
 }
 
