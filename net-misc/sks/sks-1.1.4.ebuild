@@ -31,8 +31,8 @@ reverse proxy. Instructions on properly configuring SKS can be
 found at https://bitbucket.org/skskeyserver/sks-keyserver/wiki/Peering"
 
 DEPEND="dev-lang/ocaml
-		dev-ml/cryptokit
-		sys-libs/db:4.8"
+	dev-ml/cryptokit
+	sys-libs/db:4.8"
 RDEPEND="${DEPEND}"
 
 pkg_setup() {
@@ -63,6 +63,7 @@ src_prepare() {
 
 src_compile() {
 	emake dep
+	# sks build fails with paralell build in module Bdb
 	emake -j1 all
 	if use optimize; then
 		emake all.bc
@@ -90,7 +91,7 @@ src_install() {
 	systemd_dounit "${FILESDIR}/sks-db.service"
 	systemd_dounit "${FILESDIR}/sks-recon.service"
 
-	dodir "${D}/var/lib/sks/web.typical"
+	dodir "/var/lib/sks/web.typical"
 	insinto /var/lib/sks
 	newins sampleConfig/DB_CONFIG DB_CONFIG.typical
 	newins sampleConfig/sksconf sksconf.typical
@@ -103,7 +104,7 @@ src_install() {
 pkg_postinst() {
 	readme.gentoo_print_elog
 
-	if [[ -n ${REPLACING_VERSIONS ]]; then
+	if [[ -n ${REPLACING_VERSIONS} ]]; then
 		einfo "Note when upgrading from earlier versions of SKS"
 		einfo "The default values for pagesize settings have changed. To continue"
 		einfo "using an existing DB without rebuilding, explicit settings have to be"
