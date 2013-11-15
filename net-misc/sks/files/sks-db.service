@@ -3,7 +3,6 @@ Description=SKS database thread
 After=network.target
 
 [Service]
-Type=simple
 ExecStart=/usr/bin/sks db
 User=sks
 WorkingDirectory=/var/lib/sks
