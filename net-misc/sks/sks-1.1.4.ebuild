@@ -103,7 +103,6 @@ src_install() {
 pkg_postinst() {
 	readme.gentoo_print_elog
 	ewarn "Note when upgrading from earlier versions of SKS"
-	ewarn "===================="
 	ewarn "The default values for pagesize settings have changed. To continue"
 	ewarn "using an existing DB without rebuilding, explicit settings have to be"
 	ewarn "added to the sksconf file."
