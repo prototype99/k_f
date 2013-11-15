@@ -1,27 +1,44 @@
-# Copyright 1999-2012 Gentoo Foundation
+# Copyright 1999-2013 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/net-misc/sks/sks-1.1.2.ebuild,v 1.4 2012/02/07 00:34:06 kingtaco Exp $
 
-EAPI=4
+EAPI=5
 
-inherit eutils multilib mercurial
+inherit eutils multilib user readme.gentoo systemd mercurial
 
 DESCRIPTION="SKS Keyserver"
 HOMEPAGE="https://bitbucket.org/skskeyserver/sks-keyserver"
 if [[ ${PV} == "9999" ]]; then
-EHG_REPO_URI="https://bitbucket.org/skskeyserver/sks-keyserver"
-EHG_REVISION="tip"
+	EHG_REPO_URI="https://bitbucket.org/skskeyserver/sks-keyserver"
+	EHG_REVISION="tip"
 else
-SRC_URI="https://bitbucket.org/skskeyserver/sks-keyserver/downloads/${P}.tgz"
+	SRC_URI="https://bitbucket.org/skskeyserver/sks-keyserver/downloads/${P}.tgz"
 fi;
+
 LICENSE="GPL-2"
 SLOT="0"
 KEYWORDS="~amd64 ~x86"
-IUSE="systemd optimize test"
+IUSE="optimize test"
+DOC_CONTENTS="To get sks running, first build the database,
+start the databse, import atleast one key, then
+run a cleandb. See the sks man page for more information
+Typical DB_CONFIG file and sksconf has been installed
+in /var/lib/sks and can be used as templates by renaming
+to remove the .typical extension. The DB_CONFIG file has
+to be in place before doing the database build, or the BDB
+environment has to be manually cleared from both KDB and PTree.
+The same applies if you are upgrading to this version with an existing KDB/Ptree,
+using another version of BDB than 4.8; you need to clear the environment
+using e.g. db4.6_recover -h . and db4.6_checkpoint -1h . in both KDB and PTree
+Additionally a sample web interface has been installed as
+web.typical in /var/lib/sks that can be used by renaming it to web
+Important: It is strongly recommended to set up SKS behind a
+reverse proxy. Instructions on properly configuring SKS can be
+found at https://bitbucket.org/skskeyserver/sks-keyserver/wiki/Peering"
 
 DEPEND="dev-lang/ocaml
-		dev-ml/cryptokit
-		sys-libs/db:5.2"
+	dev-ml/cryptokit
+	sys-libs/db:5.2"
 RDEPEND="${DEPEND}"
 
 pkg_setup() {
@@ -50,6 +67,7 @@ src_prepare() {
 
 src_compile() {
 	emake dep
+	# sks build fails with paralell build in module Bdb
 	emake -j1 all
 	if use optimize; then
 		emake all.bc
@@ -57,7 +75,7 @@ src_compile() {
 }
 
 src_test() {
-	./sks unit_test
+	./sks unit_test || die
 }
 
 src_install() {
@@ -74,36 +92,28 @@ src_install() {
 	newinitd "${FILESDIR}/sks-db.runscript" sks-db
 	newinitd "${FILESDIR}/sks-recon.runscript" sks-recon
 	newconfd "${FILESDIR}/sks-confd" sks
-	use systemd && systemd_dounit "${FILESDIR}/sks-db.service"
-	use systemd && systemd_dounit "${FILESDIR}/sks-recon.service"
+	systemd_dounit "${FILESDIR}/sks-db.service"
+	systemd_dounit "${FILESDIR}/sks-recon.service"
 
-	mkdir -p $D/var/lib/sks/web.typical
-	cp $S/sampleConfig/DB_CONFIG $D/var/lib/sks/DB_CONFIG.typical
-	cp $S/sampleConfig/sksconf.typical $D/var/lib/sks/sksconf.typical
-	cp $S/sampleWeb/HTML5/* $D/var/lib/sks/web.typical/
+	dodir "/var/lib/sks/web.typical"
+	insinto /var/lib/sks
+	newins sampleConfig/DB_CONFIG DB_CONFIG.typical
+	newins sampleConfig/sksconf sksconf.typical
+	insinto /var/lib/sks/web.typical
+	doins sampleWeb/HTML5/*
 
 	keepdir /var/lib/sks
 }
 
 pkg_postinst() {
-	einfo "To get sks running, first build the database,"
-	einfo "start the databse, import atleast one key, then"
-	einfo "run a cleandb. See the sks man page for more"
-	einfo "information"
-	einfo "Typical DB_CONFIG file and sksconf has been installed"
-	einfo "in /var/lib/sks and can be used as templates by renaming"
-	einfo "to remove the .typical extension. The DB_CONFIG file has"
-	einfo "to be in place before doing the database build, or the BDB"
-	einfo "environment has to be manually cleared from both KDB and PTree."
-	einfo "The same applies if you are upgrading to this version with an existing KDB/Ptree,"
-	einfo "using another version of BDB than 5.2; you need to clear the environment"
-	einfo "using e.g. db4.6_recover -h . and db4.6_checkpoint -1h . in both KDB and PTree"
-	einfo "Additionally a sample web interface has been installed as"
-	einfo "web.typical in /var/lib/sks that can be used by renaming it to web"
-	einfo "Important: It is strongly recommended to set up SKS behind a"
-	einfo "reverse proxy. Instructions on properly configuring SKS can be"
-	einfo "found at https://bitbucket.org/skskeyserver/sks-keyserver/wiki/Peering"
-	einfo "If you want SKS to update its KeyDB statistics more often you can add a crontab entry like:"
-	einfo "25 * * * * pkill -USR2 sks || exit 1"
-}
+	readme.gentoo_print_elog
 
+	if [[ -n ${REPLACING_VERSIONS} ]]; then
+		einfo "Note when upgrading from earlier versions of SKS"
+		einfo "The default values for pagesize settings have changed. To continue"
+		einfo "using an existing DB without rebuilding, explicit settings have to be"
+		einfo "added to the sksconf file."
+		einfo "pagesize:       4"
+		einfo "ptree_pagesize: 1"
+	fi;
+}

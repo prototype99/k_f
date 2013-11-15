@@ -6,7 +6,7 @@ EAPI=5
 
 inherit eutils multilib user readme.gentoo systemd
 
-DESCRIPTION="An OpenPGP keyserver whose goal is to be decentralized and with highly reliable synchronization"
+DESCRIPTION="An OpenPGP keyserver which is decentralized and provides highly reliable synchronization"
 HOMEPAGE="https://bitbucket.org/skskeyserver/sks-keyserver"
 SRC_URI="http://bitbucket.org/skskeyserver/sks-keyserver/downloads/${P}.tgz"
 LICENSE="GPL-2"
