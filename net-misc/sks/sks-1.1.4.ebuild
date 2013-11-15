@@ -102,10 +102,13 @@ src_install() {
 
 pkg_postinst() {
 	readme.gentoo_print_elog
-	ewarn "Note when upgrading from earlier versions of SKS"
-	ewarn "The default values for pagesize settings have changed. To continue"
-	ewarn "using an existing DB without rebuilding, explicit settings have to be"
-	ewarn "added to the sksconf file."
-	ewarn "pagesize:       4"
-	ewarn "ptree_pagesize: 1"
+
+	if [[ -n ${REPLACING_VERSIONS ]]; then
+		einfo "Note when upgrading from earlier versions of SKS"
+		einfo "The default values for pagesize settings have changed. To continue"
+		einfo "using an existing DB without rebuilding, explicit settings have to be"
+		einfo "added to the sksconf file."
+		einfo "pagesize:       4"
+		einfo "ptree_pagesize: 1"
+	fi;
 }
