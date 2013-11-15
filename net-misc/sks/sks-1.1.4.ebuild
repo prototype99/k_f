@@ -47,7 +47,7 @@ src_prepare() {
 
 src_compile() {
 	emake dep
-	emake all
+	emake -j1 all
 	if use optimize; then
 		emake all.bc
 	fi
