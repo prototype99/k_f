@@ -29,7 +29,7 @@ RDEPEND="
 "
 
 src_prepare(){
-	epatch "${FILESDIR}/02_basename.patch"
+	epatch "${FILESDIR}/${P}_basename.patch"
 }
 
 pkg_postinst()
