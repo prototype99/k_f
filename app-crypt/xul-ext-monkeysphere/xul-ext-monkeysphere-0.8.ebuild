@@ -12,10 +12,10 @@ SLOT="0"
 KEYWORDS="~amd64 ~x86"
 IUSE=""
 
-RDEPEND="app-crypt/msva-perl"
-DEPEND="
-	|| ( www-client/firefox-bin www-client/firefox ) 
-	media-gfx/inkscape"
+BDEPEND="media-gfx/inkscape"
+DEPEND="|| ( www-client/firefox-bin www-client/firefox ) "
+
+RDEPEND="app-crypt/msva-perl ${DEPEND}"
 
 src_install(){
 	local emid=$(sed -n 's/.*<em:id>\(.*\)<\/em:id>.*/\1/p' ${S}/install.rdf | head -1)
