@@ -47,6 +47,7 @@ src_install()
 	fperms 751 /var/lib/monkeysphere
 }
 
-pkg_postinst(){
+pkg_postinst()
+{
 	monkeysphere-authentication setup || die
 }
