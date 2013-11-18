@@ -43,13 +43,13 @@ src_install()
 	insinto ${SITE_LIB}/Crypt/Monkeysphere
 	insopts -m444
 	doins Crypt/Monkeysphere/*.pm
-	
+
 	insinto ${SITE_LIB}/Crypt/Monkeysphere/MSVA
 	doins Crypt/Monkeysphere/MSVA/*.pm
-	
+
 	insinto ${SITE_LIB}/Net/Server
 	doins Net/Server/MSVA.pm
-	
+
 	dobin msva-perl
 	doman msva-perl.1
 	dobin msva-query-agent
