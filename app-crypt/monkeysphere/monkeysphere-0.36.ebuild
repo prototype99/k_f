@@ -31,13 +31,11 @@ src_prepare()
 }
 
 pkg_postinst(){
-	ebegin "Creating named group and user"
+	einfo "Creating named group and user"
 	enewgroup monkeysphere
 	enewuser monkeysphere -1 -1 /var/lib/monkeysphere monkeysphere
-	mkdir -p /var/lib/monkeysphere || die
 	chown root:monkeysphere /var/lib/monkeysphere || die
-	chmod 750 /var/lib/monkeysphere || die
-	eend ${?}
+	chmod 751 /var/lib/monkeysphere || die
 
 	monkeysphere-authentication setup || die
 }
