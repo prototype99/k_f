@@ -34,8 +34,8 @@ RDEPEND="
 
 src_prepare()
 {
-	epatch "${FILESDIR}/${P}-makefile-version.patch"
-	sed -i "s/##VERSION##/${PV}/" Makefile
+	sed -i -e "s|^VERSION :=.*|VERSION=${PV}|" \
+	       -e "s|^DEBIAN_VERSION=.*|DEBIAN_VERSION=${PV}|" Makefile || die
 }
 
 src_install()
@@ -50,10 +50,10 @@ src_install()
 	insinto ${SITE_LIB}/Net/Server
 	doins Net/Server/MSVA.pm
 	
-	insinto /usr/bin
-	insopts -m555
-	doins msva-perl
-	doins msva-query-agent
+	dobin msva-perl
+	doman msva-perl.1
+	dobin msva-query-agent
+	doman msva-query-agent.1
 
 	dodir "/etc/profile.d"
 	insinto "/etc/profile.d"

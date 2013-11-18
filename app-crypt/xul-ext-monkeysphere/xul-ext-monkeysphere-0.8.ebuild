@@ -1,7 +1,3 @@
-# Copyright 1999-2013 Gentoo Foundation
-# Distributed under the terms of the GNU General Public License v2
-# $Header: $
-
 EAPI=5
 
 inherit eutils
@@ -17,30 +13,31 @@ KEYWORDS="~amd64 ~x86"
 IUSE=""
 
 BDEPEND="media-gfx/inkscape"
-DEPEND="|| ( www-client/firefox-bin www-client/firefox ) "
-
-RDEPEND="app-crypt/msva-perl ${DEPEND}"
+RDEPEND="app-crypt/msva-perl"
+DEPEND="|| ( www-client/firefox-bin www-client/firefox )"
 
 src_install(){
 	local emid=$(sed -n 's/.*<em:id>\(.*\)<\/em:id>.*/\1/p' ${S}/install.rdf | head -1)
-	local cleanup=( NOTES Makefile install.rdf.template monkeysphere.xpi chrome/content/*.svg )
+	local cleanup=( NOTES Makefile install.rdf.template monkeysphere.xpi chrome/content/bad.svg  chrome/content/broken.svg  chrome/content/error.svg )
+
 	local edir=""
 	for i in "${cleanup[@]}"; do rm "${S}/$i"; done;
-	local extinstalldir=""
+	local extinstalldir=()
 
 	if has_version '>=www-client/firefox-bin-1.0'; then
 		einfo "Binary version of Firefox found"
-		extinstalldir="/opt/firefox/extensions/${emid}  $extinstalldir"
+		extinstalldir+=/opt/firefox/extensions/${emid}
 	fi
 
 	if has_version '>=www-client/firefox-1.0'; then
 		einfo "Source version of Firefox found"
-		extinstalldir="/usr/lib/firefox/browser/extensions/${emid}  $extinstalldir"
+		extinstalldir+=/usr/lib/firefox/browser/extensions/${emid}
 	fi
 
-	for i in $extinstalldir; do
+	
+	for i in "${extinstalldir[@]}"; do
 		dodir "${i}"
 		insinto "${i}"
-		doins "${S}"/*
+		doins ${S}/*
 	done;
 }
