@@ -1,3 +1,7 @@
+# Copyright 1999-2013 Gentoo Foundation
+# Distributed under the terms of the GNU General Public License v2
+# $Header: $
+
 EAPI=5
 
 inherit eutils
@@ -21,7 +25,7 @@ src_install(){
 	local emid=$(sed -n 's/.*<em:id>\(.*\)<\/em:id>.*/\1/p' ${S}/install.rdf | head -1)
 	local cleanup="NOTES Makefile install.rdf.template monkeysphere.xpi chrome/content/*.svg"
 	local edir=""
-	for i in $cleanup; do rm ${S}/$i; done;
+	for i in "$cleanup"; do rm "${S}/$i"; done;
 	local extinstalldir=""
 
 	if has_version '>=www-client/firefox-bin-1.0'; then
@@ -34,10 +38,9 @@ src_install(){
 		extinstalldir="/usr/lib/firefox/browser/extensions/${emid}  $extinstalldir"
 	fi
 
-	
 	for i in $extinstalldir; do
-		dodir "${i}" 
-		insinto "${i}" 
-		doins ${S}/* 
+		dodir "${i}"
+		insinto "${i}"
+		doins "${S}"/*
 	done;
 }
