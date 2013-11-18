@@ -38,6 +38,6 @@ src_install(){
 	for i in "${extinstalldir[@]}"; do
 		dodir "${i}"
 		insinto "${i}"
-		doins ${S}/*
+		doins -r ${S}/*
 	done;
 }
