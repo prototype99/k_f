@@ -26,17 +26,18 @@ src_install(){
 
 	if has_version '>=www-client/firefox-bin-1.0'; then
 		einfo "Binary version of Firefox found"
-		extinstalldir="${D}/opt/firefox/extensions/${emid}  $extinstalldir"
+		extinstalldir="/opt/firefox/extensions/${emid}  $extinstalldir"
 	fi
 
 	if has_version '>=www-client/firefox-1.0'; then
 		einfo "Source version of Firefox found"
-		extinstalldir="${D}/usr/lib/firefox/browser/extensions/${emid}  $extinstalldir"
+		extinstalldir="/usr/lib/firefox/browser/extensions/${emid}  $extinstalldir"
 	fi
 
 	
 	for i in $extinstalldir; do
-		mkdir -p "${i}" || die
-		cp -r ${S}/* "${i}" || die
+		dodir "${i}" 
+		insinto "${i}" 
+		doins ${S}/* 
 	done;
 }
