@@ -15,7 +15,7 @@ SRC_URI="http://archive.monkeysphere.info/debian/pool/monkeysphere/m/monkeyspher
 DEPEND=""
 KEYWORDS="~amd64 ~x86"
 
-DOCS=(README Changelog)
+DOCS=( README Changelog )
 
 RDEPEND="
 	app-crypt/gnupg
