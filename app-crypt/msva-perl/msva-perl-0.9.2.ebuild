@@ -33,7 +33,7 @@ RDEPEND="
 	"
 
 src_prepare() {
-	epatch "${FILESDIR}/${P}-makefile-install-target.patch"
+	epatch "${FILESDIR}/${P}-makefile-version.patch"
 	sed -i "s/##VERSION##/${PV}/" Makefile
 	epatch "${FILESDIR}/${P}-makefile-install-target.patch"
 	sed -i 's/##PERL##/${ED}usr\/local\/lib\/site_perl/' Makefile
