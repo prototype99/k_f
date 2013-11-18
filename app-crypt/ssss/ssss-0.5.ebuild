@@ -10,7 +10,7 @@ HOMEPAGE="http://point-at-infinity.org/ssss/"
 
 LICENSE="GPL-2"
 SLOT="0"
-KEYWORDS="~x86 ~amd64"
+KEYWORDS="~amd64 ~x86"
 IUSE=""
 
 SRC_URI="http://point-at-infinity.org/ssss/ssss-${PV}.tar.gz"
@@ -19,8 +19,8 @@ DEPEND="app-doc/xmltoman
         dev-libs/gmp"
 
 src_prepare(){
-	epatch "${FILESDIR}/01_remove_strip.patch"
-	epatch "${FILESDIR}/02_memset.patch"
+	epatch "${FILESDIR}/${P}-remove_strip.patch"
+	epatch "${FILESDIR}/${P}-memset.patch"
 }
 
 src_install(){
