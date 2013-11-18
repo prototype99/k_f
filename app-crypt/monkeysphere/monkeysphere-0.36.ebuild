@@ -27,7 +27,6 @@ pkg_setup()
 	einfo "Creating named group and user"
 	enewgroup monkeysphere
 	enewuser monkeysphere -1 -1 /var/lib/monkeysphere monkeysphere
-
 }
 
 src_prepare()
@@ -40,8 +39,7 @@ src_prepare()
 
 src_install()
 {
-	emake DESTDIR="${D}" install
-	dodoc ${DOCS}
+	default_src_install
 	dodir /var/lib/monkeysphere
 	fowners root:monkeysphere /var/lib/monkeysphere
 	fperms 751 /var/lib/monkeysphere
