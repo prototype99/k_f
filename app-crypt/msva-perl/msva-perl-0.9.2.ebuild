@@ -32,16 +32,29 @@ RDEPEND="
 	dev-perl/regexp-common
 	"
 
-src_prepare() {
+src_prepare()
+{
 	epatch "${FILESDIR}/${P}-makefile-version.patch"
 	sed -i "s/##VERSION##/${PV}/" Makefile
-	epatch "${FILESDIR}/${P}-makefile-install-target.patch"
-	sed -i 's/##PERL##/${ED}usr\/local\/lib\/site_perl/' Makefile
 }
 
-src_install() {
-	mytargets="install doc=/usr/share/doc/${P}"
-	perl-module_src_install
+src_install()
+{
+	insinto ${SITE_LIB}/Crypt/Monkeysphere
+	insopts -m444
+	doins Crypt/Monkeysphere/*.pm
+	
+	insinto ${SITE_LIB}/Crypt/Monkeysphere/MSVA
+	doins Crypt/Monkeysphere/MSVA/*.pm
+	
+	insinto ${SITE_LIB}/Net/Server
+	doins Net/Server/MSVA.pm
+	
+	insinto /usr/bin
+	insopts -m555
+	doins msva-perl
+	doins msva-query-agent
+
 	dodir "/etc/profile.d"
 	insinto "/etc/profile.d"
 	insopts -m755
