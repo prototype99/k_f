@@ -23,9 +23,9 @@ RDEPEND="app-crypt/msva-perl ${DEPEND}"
 
 src_install(){
 	local emid=$(sed -n 's/.*<em:id>\(.*\)<\/em:id>.*/\1/p' ${S}/install.rdf | head -1)
-	local cleanup="NOTES Makefile install.rdf.template monkeysphere.xpi chrome/content/*.svg"
+	local cleanup=( NOTES Makefile install.rdf.template monkeysphere.xpi chrome/content/*.svg )
 	local edir=""
-	for i in "$cleanup"; do rm "${S}/$i"; done;
+	for i in "${cleanup[@]}"; do rm "${S}/$i"; done;
 	local extinstalldir=""
 
 	if has_version '>=www-client/firefox-bin-1.0'; then
