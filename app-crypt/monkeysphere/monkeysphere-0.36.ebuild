@@ -13,8 +13,10 @@ SLOT="0"
 IUSE=""
 SRC_URI="http://archive.monkeysphere.info/debian/pool/monkeysphere/m/monkeysphere/monkeysphere_${PV}.orig.tar.gz"
 DEPEND=""
-KEYWORDS="~x86 ~amd64"
+KEYWORDS="~amd64 ~x86"
+
 DOCS=(README Changelog)
+
 RDEPEND="
 	app-crypt/gnupg
 	|| ( net-analyzer/netcat net-misc/socat )
