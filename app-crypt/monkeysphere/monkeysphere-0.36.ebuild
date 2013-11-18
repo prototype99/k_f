@@ -34,6 +34,7 @@ pkg_postinst(){
 	einfo "Creating named group and user"
 	enewgroup monkeysphere
 	enewuser monkeysphere -1 -1 /var/lib/monkeysphere monkeysphere
+	mkdir -p /var/lib/monkeysphere || die
 	chown root:monkeysphere /var/lib/monkeysphere || die
 	chmod 751 /var/lib/monkeysphere || die
 
