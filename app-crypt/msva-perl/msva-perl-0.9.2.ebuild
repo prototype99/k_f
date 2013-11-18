@@ -55,7 +55,6 @@ src_install()
 	dobin msva-query-agent
 	doman msva-query-agent.1
 
-	dodir "/etc/profile.d"
 	insinto "/etc/profile.d"
 	insopts -m755
 	doins "${FILESDIR}/10-msva-perl.sh"
