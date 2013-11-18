@@ -22,17 +22,6 @@ RDEPEND="
 	dev-perl/Digest-SHA1
 	app-misc/lockfile-progs"
 
-pkg_setup()
-{
-	ebegin "Creating named group and user"
-	enewgroup monkeysphere
-	enewuser monkeysphere -1 -1 /var/lib/monkeysphere monkeysphere
-	mkdir -p /var/lib/monkeysphere || die
-	chown root:monkeysphere /var/lib/monkeysphere || die
-	chmod 755 /var/lib/monkeysphere || die
-	eend ${?}
-}
-
 src_prepare()
 {
 	epatch "${FILESDIR}/${P}_default_shell.patch"
@@ -42,5 +31,13 @@ src_prepare()
 }
 
 pkg_postinst(){
-	monkeysphere-authentication setup
+	ebegin "Creating named group and user"
+	enewgroup monkeysphere
+	enewuser monkeysphere -1 -1 /var/lib/monkeysphere monkeysphere
+	mkdir -p /var/lib/monkeysphere || die
+	chown root:monkeysphere /var/lib/monkeysphere || die
+	chmod 750 /var/lib/monkeysphere || die
+	eend ${?}
+
+	monkeysphere-authentication setup || die
 }
