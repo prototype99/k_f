@@ -24,8 +24,9 @@ src_install(){
 	local emid=$(sed -n 's/.*<em:id>\(.*\)<\/em:id>.*/\1/p' ${S}/install.rdf | head -1)
 	local cleanup=( NOTES Changelog Makefile install.rdf.template monkeysphere.xpi chrome/content/bad.svg  chrome/content/broken.svg  chrome/content/error.svg )
 
-	local edir=""
+	# Delete files not to be installed from $S
 	for i in "${cleanup[@]}"; do rm "${S}/$i"; done;
+
 	local extinstalldir=()
 
 	if has_version '>=www-client/firefox-bin-1.0'; then
