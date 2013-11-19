@@ -22,7 +22,7 @@ DEPEND="|| ( www-client/firefox-bin www-client/firefox )"
 
 src_install(){
 	local emid=$(sed -n 's/.*<em:id>\(.*\)<\/em:id>.*/\1/p' ${S}/install.rdf | head -1)
-	local cleanup=( NOTES Makefile install.rdf.template monkeysphere.xpi chrome/content/bad.svg  chrome/content/broken.svg  chrome/content/error.svg )
+	local cleanup=( NOTES Changelog Makefile install.rdf.template monkeysphere.xpi chrome/content/bad.svg  chrome/content/broken.svg  chrome/content/error.svg )
 
 	local edir=""
 	for i in "${cleanup[@]}"; do rm "${S}/$i"; done;
