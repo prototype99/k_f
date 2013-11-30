@@ -18,7 +18,9 @@ IUSE=""
 
 BDEPEND="media-gfx/inkscape"
 RDEPEND="app-crypt/msva-perl"
-DEPEND="|| ( www-client/firefox-bin www-client/firefox )"
+DEPEND="|| ( www-client/firefox-bin www-client/firefox )
+	${BDEPEND}
+	${RDEPEND}"
 
 src_install(){
 	local emid=$(sed -n 's/.*<em:id>\(.*\)<\/em:id>.*/\1/p' ${S}/install.rdf | head -1)
