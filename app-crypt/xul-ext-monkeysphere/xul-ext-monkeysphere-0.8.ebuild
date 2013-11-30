@@ -31,12 +31,12 @@ src_install(){
 
 	if has_version '>=www-client/firefox-bin-1.0'; then
 		einfo "Binary version of Firefox found"
-		extinstalldir+=/opt/firefox/extensions/${emid}
+		extinstalldir+=/$(get_libdir)/firefox/extensions/${emid}
 	fi
 
 	if has_version '>=www-client/firefox-1.0'; then
 		einfo "Source version of Firefox found"
-		extinstalldir+=/usr/lib/firefox/browser/extensions/${emid}
+		extinstalldir+=/usr/$(get_libdir)/firefox/browser/extensions/${emid}
 	fi
 
 	for i in "${extinstalldir[@]}"; do
