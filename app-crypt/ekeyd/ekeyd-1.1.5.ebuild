@@ -4,7 +4,7 @@
 
 EAPI=4
 
-inherit eutils multilib linux-info toolchain-funcs udev
+inherit eutils multilib linux-info toolchain-funcs udev systemd
 
 DESCRIPTION="Entropy Key userspace daemon"
 HOMEPAGE="http://www.entropykey.co.uk/"
@@ -95,6 +95,8 @@ src_install() {
 	# commands.
 	dodir /usr/libexec
 	mv "${D}"/usr/sbin/ekey*d "${D}"/usr/libexec
+	
+	systemd_dounit "${FILESDIR}/ekeyd.service"
 
 	newinitd "${FILESDIR}"/${PN}.init.2 ${PN}
 
