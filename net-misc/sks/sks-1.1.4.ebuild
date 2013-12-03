@@ -86,9 +86,9 @@ src_install() {
 
 	dodoc README.md
 
-	newinitd "${FILESDIR}/sks-db.runscript" sks-db
-	newinitd "${FILESDIR}/sks-recon.runscript" sks-recon
-	newconfd "${FILESDIR}/sks-confd" sks
+	newinitd "${FILESDIR}/sks-db.initd" sks-db
+	newinitd "${FILESDIR}/sks-recon.initd" sks-recon
+	newconfd "${FILESDIR}/sks.confd" sks
 	systemd_dounit "${FILESDIR}/sks-db.service"
 	systemd_dounit "${FILESDIR}/sks-recon.service"
 
