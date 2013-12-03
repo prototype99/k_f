@@ -43,6 +43,7 @@ pkg_setup() {
 
 src_prepare() {
 	epatch "${FILESDIR}/${P}-ECC_OID_fix_x86.patch"
+	epatch "${FILESDIR}/${P}-man_url.patch"
 
 	cp Makefile.local.unused Makefile.local || die
 	sed -i \
@@ -95,7 +96,7 @@ src_install() {
 	dodir "/var/lib/sks/web.typical"
 	insinto /var/lib/sks
 	newins sampleConfig/DB_CONFIG DB_CONFIG.typical
-	newins sampleConfig/sksconf sksconf.typical
+	newins sampleConfig/sksconf.typical sksconf.typical
 	insinto /var/lib/sks/web.typical
 	doins sampleWeb/HTML5/*
 
