@@ -103,6 +103,7 @@ src_install() {
 }
 
 pkg_postinst() {
+	readme.gentoo_create_doc
 	readme.gentoo_print_elog
 
 	if [[ -n ${REPLACING_VERSIONS} ]]; then
