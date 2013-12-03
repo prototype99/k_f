@@ -84,7 +84,7 @@ src_install() {
 	fi
 
 	dodoc README.md
-	doman sks.8
+	doman sks.8.gz
 
 	newinitd "${FILESDIR}/sks-db.runscript" sks-db
 	newinitd "${FILESDIR}/sks-recon.runscript" sks-recon
