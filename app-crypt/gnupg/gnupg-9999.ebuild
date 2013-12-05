@@ -39,7 +39,7 @@ BDEPEND="
 src_prepare() {
 	epatch "${FILESDIR}/gnupg_master_0002-Fix-building-with-GNU-Automake-1.13.patch"
 
-	./autogen.sh || die
+	./autogen.sh || die "Autgen script failed"
 }
 
 src_configure() {
