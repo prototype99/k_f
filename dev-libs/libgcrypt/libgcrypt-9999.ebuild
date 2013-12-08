@@ -19,7 +19,7 @@ IUSE=""
 REQUIRED_USE=""
 
 DEPEND="
-	sys-apps/texinfo
+	sys-apps/texinfo:0
 "
 RDEPEND="${DEPEND}"
 
