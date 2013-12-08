@@ -40,7 +40,7 @@ src_prepare()
 
 src_install()
 {
-	default_src_install
+	default
 	dodir /var/lib/monkeysphere
 	fowners root:monkeysphere /var/lib/monkeysphere
 	fperms 751 /var/lib/monkeysphere
