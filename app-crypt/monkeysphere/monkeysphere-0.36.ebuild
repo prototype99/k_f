@@ -17,12 +17,11 @@ KEYWORDS="~amd64 ~x86"
 
 DOCS=( README Changelog )
 
-RDEPEND="
-	app-crypt/gnupg
-	|| ( net-analyzer/netcat net-misc/socat )
-	dev-perl/Crypt-OpenSSL-RSA
-	dev-perl/Digest-SHA1
-	app-misc/lockfile-progs"
+RDEPEND="app-crypt/gnupg:0=
+	|| ( net-analyzer/netcat:0= net-misc/socat:0= )
+	dev-perl/Crypt-OpenSSL-RSA:0=
+	dev-perl/Digest-SHA1:0=
+	app-misc/lockfile-progs:0="
 
 pkg_setup()
 {
