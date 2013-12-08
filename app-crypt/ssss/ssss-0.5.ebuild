@@ -15,8 +15,8 @@ IUSE=""
 
 SRC_URI="http://point-at-infinity.org/ssss/ssss-${PV}.tar.gz"
 
-DEPEND="app-doc/xmltoman
-        dev-libs/gmp"
+DEPEND="app-doc/xmltoman:0=
+        dev-libs/gmp:0="
 
 src_prepare(){
 	epatch "${FILESDIR}/${P}-remove_strip.patch"
