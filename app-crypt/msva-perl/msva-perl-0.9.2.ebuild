@@ -14,23 +14,23 @@ HOMEPAGE="http://web.monkeysphere.info/validation-agent/"
 LICENSE="GPL-3"
 SLOT="0"
 IUSE=""
-DEPEND="virtual/perl-Module-Build"
-
 KEYWORDS="~amd64 ~x86"
 
+DEPEND="virtual/perl-Module-Build:0="
+
 RDEPEND="
-	dev-perl/Crypt-X509
-	dev-perl/File-HomeDir
-	dev-perl/File-ShareDir
-	dev-perl/GnuPG-Interface
-	dev-perl/HTTP-Server-Simple
-	dev-perl/HTTP-Message
-	dev-perl/JSON
-	dev-perl/config-general
-	dev-perl/libwww-perl
-	dev-perl/net-server
-	dev-perl/regexp-common
-	"
+	dev-perl/Crypt-X509:0=
+	dev-perl/File-HomeDir:0=
+	dev-perl/File-ShareDir:0=
+	dev-perl/GnuPG-Interface:0=
+	dev-perl/HTTP-Server-Simple:0=
+	dev-perl/HTTP-Message:0=
+	dev-perl/JSON:0=
+	dev-perl/config-general:0=
+	dev-perl/libwww-perl:0=
+	dev-perl/net-server:0=
+	dev-perl/regexp-common:0=
+	${DEPEND}"
 
 src_prepare()
 {
