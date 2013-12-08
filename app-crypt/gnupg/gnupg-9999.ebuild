@@ -26,15 +26,15 @@ COMMON_DEPEND_LIBS="
     >=dev-libs/npth-0.91
     >=net-misc/curl-7.10"
 
+BDEPEND="dev-vcs/git
+	media-gfx/transfig"
+
 DEPEND="
 	${COMMON_DEPEND_LIBS}
 	net-nds/openldap
-	media-gfx/transfig
-	"
-RDEPEND="${DEPEND}"
+	${BDEPEND}"
 
-BDEPEND="
-	${DEPEND}"
+RDEPEND="${DEPEND}"
 
 src_prepare() {
 	epatch "${FILESDIR}/gnupg_master_0002-Fix-building-with-GNU-Automake-1.13.patch"
