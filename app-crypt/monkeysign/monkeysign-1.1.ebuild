@@ -15,7 +15,7 @@ SLOT="0"
 KEYWORDS="~amd64 ~x86"
 IUSE="gnome"
 
-SRC_URI="http://cdn.debian.net/debian/pool/main/m/monkeysign/monkeysign_${PV}.tar.gz"
+SRC_URI="mirror://debian/pool/main/m/monkeysign/monkeysign_${PV}.tar.gz"
 
 DEPEND=""
 RDEPEND="dev-python/pygtk:2=
