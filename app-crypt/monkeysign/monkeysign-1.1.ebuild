@@ -18,14 +18,13 @@ IUSE="gnome"
 SRC_URI="http://cdn.debian.net/debian/pool/main/m/monkeysign/monkeysign_${PV}.tar.gz"
 
 DEPEND=""
-RDEPEND="
-	dev-python/pygtk
-	virtual/python-imaging
-	media-gfx/zbar[python,gtk,imagemagick]
-	media-gfx/qrencode-python
-	dev-python/setuptools
-	app-crypt/gnupg
-	gnome? ( x11-themes/gnome-icon-theme )
+RDEPEND="dev-python/pygtk:2=
+	virtual/python-imaging:0=
+	media-gfx/zbar:0=[python,gtk,imagemagick]
+	media-gfx/qrencode-python:0=
+	dev-python/setuptools:0=
+	app-crypt/gnupg:0=
+	gnome? ( x11-themes/gnome-icon-theme:0= )
 "
 
 src_prepare()
