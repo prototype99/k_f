@@ -6,7 +6,7 @@ EAPI="5"
 
 inherit perl-module
 
-SRC_URI="mirror://debian/pool/monkeysphere/m/msva-perl/msva-perl_${PV}.orig.tar.gz"
+SRC_URI="mirror://debian/pool/main/m/msva-perl/msva-perl_${PV}.orig.tar.gz"
 
 DESCRIPTION="Monkeysphere public key validation daemon"
 HOMEPAGE="http://web.monkeysphere.info/validation-agent/"
