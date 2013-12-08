@@ -16,9 +16,9 @@ SLOT="0"
 KEYWORDS="~amd64 ~x86"
 IUSE=""
 
-BDEPEND="media-gfx/inkscape"
-RDEPEND="app-crypt/msva-perl"
-DEPEND="|| ( www-client/firefox-bin www-client/firefox )
+BDEPEND="media-gfx/inkscape:0="
+RDEPEND="app-crypt/msva-perl:0="
+DEPEND="|| ( www-client/firefox-bin:0= www-client/firefox:0= )
 	${BDEPEND}
 	${RDEPEND}"
 
