@@ -9,7 +9,7 @@ inherit eutils
 DESCRIPTION="Iceweasel/Firefox extension for using Monkeysphere on the web"
 HOMEPAGE="http://web.monkeysphere.info/"
 
-SRC_URI="http://archive.monkeysphere.info/debian/pool/monkeysphere/x/xul-ext-monkeysphere/xul-ext-monkeysphere_${PV}.orig.tar.gz"
+SRC_URI="mirror://debian/pool/main/x/xul-ext-monkeysphere/xul-ext-monkeysphere_${PV}.orig.tar.gz -> xul-ext-monkeysphere_${PV}.tar.gz"
 
 LICENSE="GPL-3"
 SLOT="0"
