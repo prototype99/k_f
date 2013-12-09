@@ -13,7 +13,7 @@ HOMEPAGE="http://gnupg.org/"
 LICENSE="GPL-2"
 SLOT="2.1"
 KEYWORDS="~amd64 ~x86"
-IUSE="+localprefix"
+IUSE=""
 
 REQUIRED_USE=""
 WANT_AUTOMAKE="1.13"
@@ -43,19 +43,18 @@ src_prepare() {
 }
 
 src_configure() {
-	local myconf2; 
-
-	if use localprefix; then
-		myconf2+=(
-			--prefix=/usr/local
-			--datarootdir=/usr/local
-		)
-	fi
-
-	./configure \
-		${myconf2[@]} \
+	econf \
+		--program-prefix='gpg2.1-' \
+		--infodir=/usr/share/info/gnupg2.1 \
+		--datadir=/usr/share/gnupg2.1 \
+		--docdir=/usr/share/doc/gnupg2.1 \
 		--enable-maintainer-mode \
 		--enable-symcryptrun \
 		--enable-mailto \
-		--enable-gpgtar || die
+		--enable-gpgtar
+}
+
+src_install(){
+	default
+	dosym gpg2.1-gpg2 /usr/bin/gpg2.1
 }
