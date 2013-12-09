@@ -1,6 +1,6 @@
 # Copyright 1999-2013 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/net-misc/openvpn/openvpn-9999.ebuild,v 1.7 2013/05/03 07:56:29 djc Exp $
+# $Header: Exp $
 
 EAPI=4
 
@@ -17,24 +17,19 @@ KEYWORDS="~amd64 ~x86"
 IUSE=""
 
 REQUIRED_USE=""
-
+#Texinfo version 4.8 segfaults, force higher version.  
 DEPEND="
-	sys-apps/texinfo:0
+	>=sys-apps/texinfo-5.2:0
 "
 RDEPEND="${DEPEND}"
 
 src_prepare() {
 	epatch "${FILESDIR}/0002-Fix-building-with-GNU-Automake-1.13.patch";
+	./autogen.sh || die "Autogen failed"
 }
 
 src_configure() {
-	./autogen.sh
-
+	#Installing into /usr/local/ rather than /usr using configure 
 	./configure \
 		--enable-maintainer-mode
-}
-
-src_compile()
-{
-	make
 }
