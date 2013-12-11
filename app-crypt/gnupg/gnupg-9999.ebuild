@@ -57,4 +57,5 @@ src_configure() {
 src_install(){
 	default
 	dosym gpg2.1-gpg2 /usr/bin/gpg2.1
+	dosym gpg2.1-gpg-agent /usr/bin/gpg2.1-agent
 }
