@@ -29,7 +29,7 @@ src_prepare() {
 }
 
 src_configure() {
-	#Installing into /usr/local/ rather than /usr using configure 
-	./configure \
-		--enable-maintainer-mode
+	econf \
+		--enable-maintainer-mode \
+		--program-prefix='gcry1.6-'
 }

@@ -1,6 +1,6 @@
 # Copyright 1999-2013 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/net-misc/sks/sks-1.1.2.ebuild,v 1.4 2012/02/07 00:34:06 kingtaco Exp $
+# $Header: /var/cvsroot/gentoo-x86/net-misc/sks/sks-1.1.4-r1.ebuild,v 1.2 2013/12/13 09:29:03 patrick Exp $
 
 EAPI=5
 
@@ -30,8 +30,8 @@ Important: It is strongly recommended to set up SKS behind a
 reverse proxy. Instructions on properly configuring SKS can be
 found at https://bitbucket.org/skskeyserver/sks-keyserver/wiki/Peering"
 
-DEPEND="dev-lang/ocaml:0=
-	dev-ml/cryptokit:0=
+DEPEND="dev-lang/ocaml
+	dev-ml/cryptokit
 	sys-libs/db:4.8"
 RDEPEND="${DEPEND}"
 
@@ -42,8 +42,8 @@ pkg_setup() {
 }
 
 src_prepare() {
-	epatch "${FILESDIR}/${P}-ECC_OID_fix_x86.patch"
-	epatch "${FILESDIR}/${P}-man_url.patch"
+	epatch "${FILESDIR}/${P}-ECC_OID_fix_x86.patch"\
+		"${FILESDIR}/${P}-man_url.patch"
 
 	cp Makefile.local.unused Makefile.local || die
 	sed -i \
@@ -100,10 +100,10 @@ src_install() {
 	doins sampleWeb/HTML5/*
 
 	keepdir /var/lib/sks
+	readme.gentoo_create_doc
 }
 
 pkg_postinst() {
-	readme.gentoo_create_doc
 	readme.gentoo_print_elog
 
 	if [[ -n ${REPLACING_VERSIONS} ]]; then
