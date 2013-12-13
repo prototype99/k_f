@@ -46,7 +46,7 @@ src_configure() {
 	econf \
 		--program-prefix='gpg2.1-' \
 		--infodir=/usr/share/info/gnupg2.1 \
-		--datadir=/usr/share/gnupg2.1 \
+		--datarootdir=/usr/share/gnupg2.1 \
 		--docdir=/usr/share/doc/gnupg2.1 \
 		--enable-maintainer-mode \
 		--enable-symcryptrun \
