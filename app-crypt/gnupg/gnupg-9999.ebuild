@@ -17,7 +17,7 @@ IUSE=""
 
 REQUIRED_USE=""
 WANT_AUTOMAKE="1.13"
-
+COLLISION_IGNORE="/usr/share/gnupg/"
 COMMON_DEPEND_LIBS="
     >=dev-libs/libassuan-2.1:0
     >=dev-libs/libgcrypt-1.6
