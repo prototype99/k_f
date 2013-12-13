@@ -103,10 +103,10 @@ src_install() {
 	doins sampleWeb/HTML5/*
 
 	keepdir /var/lib/sks
+	readme.gentoo_create_doc
 }
 
 pkg_postinst() {
-	readme.gentoo_create_doc
 	readme.gentoo_print_elog
 
 	if [[ -n ${REPLACING_VERSIONS} ]]; then

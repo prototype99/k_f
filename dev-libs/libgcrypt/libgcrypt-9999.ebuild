@@ -11,7 +11,7 @@ EGIT_REPO_URI="git://git.gnupg.org/${PN}.git"
 HOMEPAGE="http://gnupg.org/"
 
 LICENSE="GPL-2"
-SLOT="2.1"
+SLOT="0"
 KEYWORDS="~amd64 ~x86"
 
 IUSE=""
@@ -30,6 +30,5 @@ src_prepare() {
 
 src_configure() {
 	econf \
-		--enable-maintainer-mode \
-		--program-prefix='gcry1.6-'
+		--enable-maintainer-mode
 }

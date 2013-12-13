@@ -20,7 +20,7 @@ WANT_AUTOMAKE="1.13"
 
 COMMON_DEPEND_LIBS="
     >=dev-libs/libassuan-2.1:0
-    dev-libs/libgcrypt:2.1
+    >=dev-libs/libgcrypt-1.6
     >=dev-libs/libgpg-error-1.11:0
     >=dev-libs/libksba-1.2.0:0
     dev-libs/npth:2.1
