@@ -42,7 +42,7 @@ pkg_setup() {
 }
 
 src_prepare() {
-	epatch "${FILESDIR}/${P}-ECC_OID_fix_x86.patch"\
+	epatch 	"${FILESDIR}/${P}-ECC_OID_fix_x86.patch"\
 		"${FILESDIR}/${P}-man_url.patch"
 
 	cp Makefile.local.unused Makefile.local || die
