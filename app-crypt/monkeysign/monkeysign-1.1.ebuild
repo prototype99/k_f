@@ -35,18 +35,5 @@ src_prepare()
 src_install()
 {
 	default_src_install
-	if use gnome; then
-		insinto /usr/share/applications
-		doins "${FILESDIR}/monkeysign.desktop"
-	fi;
-}
-
-pkg_postinst()
-{
-	use gnome && update-desktop-database || die
-}
-
-pkg_postrm()
-{
-	use gnome && update-desktop-database || die
+	domenu "${FILESDIR}/monkeysign.desktop"
 }
