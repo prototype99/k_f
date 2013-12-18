@@ -32,9 +32,10 @@ pkg_setup()
 
 src_prepare()
 {
-	epatch "${FILESDIR}/${P}_default_shell.patch"
-	epatch "${FILESDIR}/${P}_non_default_port.patch"
-	epatch "${FILESDIR}/${P}_userid_empty_line.patch"
+	epatch "${FILESDIR}/${P}_default_shell.patch"\
+	       "${FILESDIR}/${P}_non_default_port.patch"\
+	       "${FILESDIR}/${P}_userid_empty_line.patch"\
+               "${FILESDIR}/${P}_openpgp2ssh_sanity_check.patch"
 	sed -i "s#share/doc/monkeysphere#share/doc/${PF}#" Makefile || die
 }
 
