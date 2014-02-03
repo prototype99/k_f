@@ -1,11 +1,11 @@
-# Copyright 1999-2013 Gentoo Foundation
+# Copyright 1999-2014 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
 # $Header: $
 
 EAPI=5
 PYTHON_COMPAT=( python{2_6,2_7} )
 
-inherit distutils-r1
+inherit eutils distutils-r1
 
 DESCRIPTION="Monkeysign"
 HOMEPAGE="http://web.monkeysphere.info/"
@@ -17,19 +17,21 @@ IUSE="gnome"
 
 SRC_URI="mirror://debian/pool/main/m/monkeysign/monkeysign_${PV}.tar.gz"
 
-DEPEND=""
-RDEPEND="dev-python/pygtk:2=
-	virtual/python-imaging:0=
+DEPEND="dev-python/docutils:0=
+	dev-python/pygtk:2=
 	media-gfx/zbar:0=[python,gtk,imagemagick]
-	media-gfx/qrencode-python:0=
+	media-gfx/qrencode-python:0="
+
+RDEPEND="${DEPEND}
+	virtual/python-imaging:0=
 	dev-python/setuptools:0=
 	app-crypt/gnupg:0=
-	gnome? ( x11-themes/gnome-icon-theme:0= )
-"
+	gnome? ( x11-themes/gnome-icon-theme:0= )"
 
 src_prepare()
 {
-	epatch "${FILESDIR}/${P}-basename.patch"
+	epatch "${FILESDIR}/${P}-basename.patch"\
+	       "${FILESDIR}/${P}-rst2s5.patch"
 }
 
 src_install()
