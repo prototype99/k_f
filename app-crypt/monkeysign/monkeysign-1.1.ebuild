@@ -32,10 +32,11 @@ src_prepare()
 {
 	epatch "${FILESDIR}/${P}-basename.patch"\
 	       "${FILESDIR}/${P}-rst2s5.patch"
+	distutils-r1_src_prepare
 }
 
 src_install()
 {
-	default_src_install
+	distutils-r1_src_install
 	domenu "${FILESDIR}/monkeysign.desktop"
 }
