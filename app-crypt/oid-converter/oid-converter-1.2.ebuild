@@ -6,12 +6,12 @@ EAPI=5
 inherit eutils
 
 DESCRIPTION="The OID converter is a tool to convert ASN.1 OIDs between dotted decimal notation and hexadecimal"
-HOMEPAGE="http://www.rtner.de/software/oid.html"b
+HOMEPAGE="http://www.rtner.de/software/oid.html"
 
 LICENSE="WTFPL-2"
 SLOT="0"
 IUSE=""
-SRC_URI="http://www.rtner.de/software/oid.c"
+SRC_URI="http://dev.kfwebs.net/gentoo/oid-converter/oid-${PV}.c -> oid.c"
 DEPEND=""
 KEYWORDS="~amd64 ~x86"
 
