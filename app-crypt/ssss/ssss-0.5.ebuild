@@ -24,7 +24,7 @@ src_prepare(){
 }
 
 src_install(){
-	dobin ssss-split || die
-	dobin ssss-combine || die
-	doman ssss.1 || die
+	dobin ssss-split
+	dobin ssss-combine
+	doman ssss.1
 }
