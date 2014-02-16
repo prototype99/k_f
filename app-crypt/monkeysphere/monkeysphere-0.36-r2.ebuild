@@ -12,16 +12,17 @@ LICENSE="GPL-3"
 SLOT="0"
 IUSE=""
 SRC_URI="mirror://debian/pool/monkeysphere/m/monkeysphere/monkeysphere_${PV}.orig.tar.gz"
-DEPEND=""
 KEYWORDS="~amd64 ~x86"
 
 DOCS=( README Changelog )
 
-RDEPEND="app-crypt/gnupg:0=
-	|| ( net-analyzer/netcat:0= net-misc/socat:0= )
+DEPEND="app-crypt/gnupg:0=
+	net-misc/socat:0=
 	dev-perl/Crypt-OpenSSL-RSA:0=
 	dev-perl/Digest-SHA1:0=
 	app-misc/lockfile-progs:0="
+
+RDEPEND="${DEPEND}"
 
 pkg_setup()
 {
@@ -35,8 +36,15 @@ src_prepare()
 	epatch "${FILESDIR}/${P}_default_shell.patch"\
 	       "${FILESDIR}/${P}_non_default_port.patch"\
 	       "${FILESDIR}/${P}_userid_empty_line.patch"\
-	       "${FILESDIR}/${P}_openpgp2ssh_sanity_check.patch" # Upstream bug https://labs.riseup.net/code/issues/6524
+	       "${FILESDIR}/${P}_openpgp2ssh_sanity_check.patch"\
+	       "${FILESDIR}/${P}_hd_od.patch"
+
 	sed -i "s#share/doc/monkeysphere#share/doc/${PF}#" Makefile || die
+	
+	#Output format of gpg --check-sigs differ between 1.4 and 2.0 so test needs to be updated
+	if has_version '>=app-crypt/gnupg-2.0.0:0'; then
+		epatch "${FILESDIR}/${P}_tests_gnupg2.patch"
+	fi;
 }
 
 src_install()
