@@ -1,4 +1,4 @@
-# Copyright 1999-2013 Gentoo Foundation
+# Copyright 1999-2014 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
 # $Header: $
 
@@ -15,6 +15,9 @@ SRC_URI="mirror://debian/pool/monkeysphere/m/monkeysphere/monkeysphere_${PV}.ori
 KEYWORDS="~amd64 ~x86"
 
 DOCS=( README Changelog )
+
+# Tests fail upstream for SSH connection. Issue has been reported.
+RESTRICT="test"
 
 DEPEND="app-crypt/gnupg:0=
 	net-misc/socat:0=
@@ -40,9 +43,9 @@ src_prepare()
 	       "${FILESDIR}/${P}_hd_od.patch"
 
 	sed -i "s#share/doc/monkeysphere#share/doc/${PF}#" Makefile || die
-	
+
 	# Output format of gpg --check-sigs differ between 1.4 and 2.0 so test
-        # needs to be updated if 2.0 is used
+	# needs to be updated if 2.0 is used
 	if has_version '>=app-crypt/gnupg-2.0.0:0'; then
 		epatch "${FILESDIR}/${P}_tests_gnupg2.patch"
 	fi;
