@@ -41,7 +41,8 @@ src_prepare()
 
 	sed -i "s#share/doc/monkeysphere#share/doc/${PF}#" Makefile || die
 	
-	#Output format of gpg --check-sigs differ between 1.4 and 2.0 so test needs to be updated
+	# Output format of gpg --check-sigs differ between 1.4 and 2.0 so test
+        # needs to be updated if 2.0 is used
 	if has_version '>=app-crypt/gnupg-2.0.0:0'; then
 		epatch "${FILESDIR}/${P}_tests_gnupg2.patch"
 	fi;
