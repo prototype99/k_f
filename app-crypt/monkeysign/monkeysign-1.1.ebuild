@@ -38,5 +38,5 @@ src_prepare()
 src_install()
 {
 	distutils-r1_src_install
-	domenu "${FILESDIR}/monkeysign.desktop"
+	use gnome && domenu "${FILESDIR}/monkeysign.desktop"
 }

@@ -1,0 +1,12 @@
+diff -r eabc70490917 monkeysign/documentation.py
+--- a/monkeysign/documentation.py	Sun Feb 16 22:25:35 2014 +0100
++++ b/monkeysign/documentation.py	Sun Feb 16 22:26:33 2014 +0100
+@@ -165,7 +165,7 @@
+ 
+ def has_rst2s5(build):
+     """predicate for this class: do not fail if rst2s5 is missing"""
+-    return (os.system('rst2s5 < /dev/null > /dev/null') == 0)
++    return (os.system('rst2s5.py < /dev/null > /dev/null') == 0)
+ 
+ # (function, predicate), see http://docs.python.org/2/distutils/apiref.html#distutils.cmd.Command.sub_commands
+ build.sub_commands.append(('build_manpage', None))
