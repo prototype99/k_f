@@ -1,3 +1,0 @@
-# 2014-01-07: Add non-released SKS to overlay
-# SKS 1.1.5 hasn't been released by upstream yet
-=net-misc/sks-1.1.5

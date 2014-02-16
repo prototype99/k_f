@@ -32,7 +32,8 @@ RDEPEND="dev-python/pygtk:2=
 src_prepare()
 {
 	epatch "${FILESDIR}/monkeysign-1.1-basename.patch"\
-	       "${FILESDIR}/${PN}-1.1-rst2s5.patch"
+	       "${FILESDIR}/${PN}-1.1-rst2s5.patch"\
+	       "${FILESDIR}/${P}-rst2s5.patch"
 	distutils-r1_src_prepare
 }
 
