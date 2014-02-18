@@ -1,35 +1,32 @@
 # Copyright 1999-2013 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: Exp $
+# $Header: /var/cvsroot/gentoo-x86/net-misc/openvpn/openvpn-9999.ebuild,v 1.7 2013/05/03 07:56:29 djc Exp $
 
-EAPI=4
+EAPI=5
 
 inherit autotools flag-o-matic user git-2
 
-DESCRIPTION="General purpose crypto library based on the code used in GnuPG"
+DESCRIPTION="libgpg-error: Error codes used by GnuPG, libgcrypt etc"
 EGIT_REPO_URI="git://git.gnupg.org/${PN}.git"
 HOMEPAGE="http://gnupg.org/"
 
 LICENSE="GPL-2"
 SLOT="0"
 KEYWORDS="~amd64 ~x86"
-
 IUSE=""
 
 REQUIRED_USE=""
-#Texinfo version 4.8 segfaults, force higher version.  
-DEPEND="
-	>=sys-apps/texinfo-5.2:0
-	>=dev-libs/libgpg-error-1.13
-"
+
+DEPEND=""
 RDEPEND="${DEPEND}"
 
 src_prepare() {
-	epatch "${FILESDIR}/0002-Fix-building-with-GNU-Automake-1.13.patch";
 	./autogen.sh || die "Autogen failed"
+	eautoreconf
 }
 
 src_configure() {
 	econf \
+		${myconf} \
 		--enable-maintainer-mode
 }
