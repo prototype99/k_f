@@ -19,8 +19,8 @@ DEPEND="app-doc/xmltoman:0=
         dev-libs/gmp:0="
 
 src_prepare(){
-	epatch "${FILESDIR}/${P}-remove_strip.patch"
-	epatch "${FILESDIR}/${P}-memset.patch"
+	epatch "${FILESDIR}/${P}-remove_strip.patch"\
+	       "${FILESDIR}/${P}-memset.patch"
 }
 
 src_install(){

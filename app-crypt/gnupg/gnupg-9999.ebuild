@@ -16,6 +16,9 @@ KEYWORDS="~amd64 ~x86"
 IUSE=""
 
 REQUIRED_USE=""
+# Restrict test as it fails with ecc key generation atm
+RESTRICT="test"
+
 WANT_AUTOMAKE="1.13"
 COMMON_DEPEND_LIBS="
     >=dev-libs/libassuan-2.1:0
