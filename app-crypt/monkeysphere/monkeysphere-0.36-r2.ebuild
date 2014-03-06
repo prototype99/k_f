@@ -55,11 +55,11 @@ src_install()
 {
 	default
 	dodir /var/lib/monkeysphere
-	fowners root:monkeysphere /var/lib/monkeysphere
-	fperms 751 /var/lib/monkeysphere
 }
 
 pkg_postinst()
 {
 	monkeysphere-authentication setup || die
+	fowners root:monkeysphere /var/lib/monkeysphere
+	fperms 751 /var/lib/monkeysphere
 }
