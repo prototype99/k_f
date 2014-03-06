@@ -60,6 +60,8 @@ src_install()
 pkg_postinst()
 {
 	monkeysphere-authentication setup || die
-	fowners root:monkeysphere /var/lib/monkeysphere
-	fperms 751 /var/lib/monkeysphere
+	# Using fperms and fowner in src_install leave unusable config with error
+        # Authentication refused: bad ownership or modes for directory /var/lib/monkeysphere
+	chown root:monkeysphere /var/lib/monkeysphere
+	chmod 751 /var/lib/monkeysphere
 }
