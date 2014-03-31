@@ -2,7 +2,7 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: Exp $
 
-EAPI=4
+EAPI=5
 
 inherit autotools flag-o-matic user git-2
 
@@ -11,7 +11,7 @@ EGIT_REPO_URI="git://git.gnupg.org/${PN}.git"
 HOMEPAGE="http://gnupg.org/"
 
 LICENSE="GPL-2"
-SLOT="0"
+SLOT="0/20"
 KEYWORDS="~amd64 ~x86"
 
 IUSE=""

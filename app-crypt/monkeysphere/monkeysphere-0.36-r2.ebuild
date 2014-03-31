@@ -32,6 +32,10 @@ pkg_setup()
 	einfo "Creating named group and user"
 	enewgroup monkeysphere
 	enewuser monkeysphere -1 -1 /var/lib/monkeysphere monkeysphere
+	# Using fperms and fowner in src_install leave unusable config with error
+        # Authentication refused: bad ownership or modes for directory /var/lib/monkeysphere
+	chown root:monkeysphere /var/lib/monkeysphere
+	chmod 751 /var/lib/monkeysphere
 }
 
 src_prepare()
@@ -60,8 +64,4 @@ src_install()
 pkg_postinst()
 {
 	monkeysphere-authentication setup || die
-	# Using fperms and fowner in src_install leave unusable config with error
-        # Authentication refused: bad ownership or modes for directory /var/lib/monkeysphere
-	chown root:monkeysphere /var/lib/monkeysphere
-	chmod 751 /var/lib/monkeysphere
 }
