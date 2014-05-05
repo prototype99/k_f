@@ -104,7 +104,7 @@ pkg_postinst() {
 	readme.gentoo_print_elog
 
 	if [[ -n ${REPLACING_VERSIONS} ]]; then
-		einfo "Note when upgrading from earlier versions of SKS"
+		einfo "Note when upgrading from versions of SKS earlier than 1.1.4"
 		einfo "The default values for pagesize settings have changed. To continue"
 		einfo "using an existing DB without rebuilding, explicit settings have to be"
 		einfo "added to the sksconf file."
