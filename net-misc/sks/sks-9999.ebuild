@@ -9,7 +9,7 @@ inherit eutils multilib user readme.gentoo systemd mercurial
 DESCRIPTION="SKS Keyserver"
 HOMEPAGE="https://bitbucket.org/skskeyserver/sks-keyserver"
 if [[ ${PV} == "9999" ]]; then
-	EHG_REPO_URI="https://bitbucket.org/skskeyserver/sks-keyserver"
+	EHG_REPO_URI="https://bitbucket.org/kristianf/sks-keyserver"
 	EHG_REVISION="tip"
 else
 	SRC_URI="https://bitbucket.org/skskeyserver/sks-keyserver/downloads/${P}.tgz"
