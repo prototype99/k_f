@@ -12,21 +12,16 @@ DESCRIPTION="Mozilla's typefont Fira"
 HOMEPAGE="http://www.mozilla.org/en-US/styleguide/products/firefox-os/typeface/"
 SRC_URI="http://dev.kfwebs.net/mozilla-fira-p20130923.zip -> mozilla-fira.zip"
 
-#TODO: SIL OPEN FONT LICENSE Version 1.1 - 26 February 2007
-LICENSE="public-domain"
+LICENSE="OFL-1.1"
 SLOT="0"
 KEYWORDS="~alpha ~amd64 ~arm ~hppa ~ia64 ~ppc ~ppc64 ~s390 ~sh ~sparc ~x86 ~x86-fbsd"
 IUSE=""
 
-DEPEND="x11-apps/bdftopcf
-		x11-apps/mkfontdir
-		dev-lang/perl
-		>=sys-apps/sed-4
-		app-arch/unzip"
+DEPEND="app-arch/unzip"
 RDEPEND=""
 
 S="${WORKDIR}/Fira-master"
 DOCS="README.md"
-FONT_S="${WORKDIR}/Fira-master/ttf"
-FONT_SUFFIX="ttf"
+FONT_S="${WORKDIR}/Fira-master/otf"
+FONT_SUFFIX="otf"
 FONTDIR="/usr/share/fonts/${PN}"
