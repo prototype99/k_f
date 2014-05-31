@@ -10,7 +10,7 @@ MY_P="${P/_/}"
 
 DESCRIPTION="Mozilla's typefont Fira"
 HOMEPAGE="http://www.mozilla.org/en-US/styleguide/products/firefox-os/typeface/"
-SRC_URI="http://dev.kfwebs.net/mozilla-fira-p20130923.zip -> mozilla-fira.zip"
+SRC_URI="http://kfwebs.com/gentoo/mozilla-fira-p20130923.zip -> mozilla-fira.zip"
 
 LICENSE="OFL-1.1"
 SLOT="0"
