@@ -18,7 +18,7 @@ IUSE=""
 
 REQUIRED_USE=""
 # Restrict test as it fails with ecc key generation atm
-RESTRICT="test"
+RESTRICT=""
 
 WANT_AUTOMAKE="1.13"
 COMMON_DEPEND_LIBS="
