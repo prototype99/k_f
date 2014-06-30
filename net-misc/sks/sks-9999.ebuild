@@ -51,8 +51,8 @@ src_prepare() {
 	cp Makefile.local.unused Makefile.local || die
 	sed -i \
 		-e "s:^BDBLIB=.*$:BDBLIB=-L/usr/$(get_libdir):g" \
-		-e "s:^BDBINCLUDE=.*$:BDBINCLUDE=-I/usr/include/db5.2/:g" \
-		-e "s:^LIBDB=.*$:LIBDB=-ldb-5.2:g" \
+		-e "s:^BDBINCLUDE=.*$:BDBINCLUDE=-I/usr/include/db5.3/:g" \
+		-e "s:^LIBDB=.*$:LIBDB=-ldb-5.3:g" \
 		-e "s:^PREFIX=.*$:PREFIX=${D}/usr:g" \
 		-e "s:^MANDIR=.*$:MANDIR=${D}/usr/share/man:g" \
 		Makefile.local || die
