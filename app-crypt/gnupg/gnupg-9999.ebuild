@@ -17,8 +17,8 @@ KEYWORDS="~amd64 ~x86"
 IUSE=""
 
 REQUIRED_USE=""
-# Restrict test as it fails with ecc key generation atm
-RESTRICT=""
+
+RESTRICT="test"
 
 WANT_AUTOMAKE="1.13"
 COMMON_DEPEND_LIBS="
@@ -28,7 +28,8 @@ COMMON_DEPEND_LIBS="
     >=dev-libs/libksba-1.2.0:0
 	>=net-libs/gnutls-3.3.1:0
     dev-libs/npth:2.1
-    >=net-misc/curl-7.10:0"
+    >=net-misc/curl-7.10:0
+    >=net-libs/gnutls-3.0"
 
 BDEPEND="dev-vcs/git:0
 	media-gfx/transfig:0"

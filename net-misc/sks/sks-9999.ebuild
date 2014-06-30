@@ -38,7 +38,7 @@ found at https://bitbucket.org/skskeyserver/sks-keyserver/wiki/Peering"
 
 DEPEND="dev-lang/ocaml:0=
 	dev-ml/cryptokit:0=
-	sys-libs/db:5.2"
+	sys-libs/db:5.3"
 RDEPEND="${DEPEND}"
 
 pkg_setup() {
