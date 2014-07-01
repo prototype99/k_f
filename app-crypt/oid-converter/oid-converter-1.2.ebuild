@@ -3,7 +3,7 @@
 # $Header: $
 
 EAPI=5
-inherit eutils
+inherit toolchain-funcs
 
 DESCRIPTION="The OID converter is a tool to convert ASN.1 OIDs between dotted decimal notation and hexadecimal"
 HOMEPAGE="http://www.rtner.de/software/oid.html"
