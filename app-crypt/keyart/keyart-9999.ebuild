@@ -5,10 +5,10 @@
 EAPI=5
 PYTHON_COMPAT=( python2_7 )
 
-inherit git-2
+inherit git-2 python-r1
 
-DESCRIPTION="Monkeysign"
-HOMEPAGE="http://web.monkeysphere.info/"
+DESCRIPTION="Drunken Bishop algorithm for OpenPGP as applied to OpenSSH keys"
+HOMEPAGE="https://pthree.org/2014/04/18/the-drunken-bishop-for-openpgp-keys/"
 
 LICENSE="GPL-3"
 SLOT="0"
@@ -20,7 +20,17 @@ EGIT_REPO_URI="https://github.com/atoponce/${PN}"
 DEPEND=""
 RDEPEND=""
 
+src_prepare()
+{
+	python_copy_sources
+}
+
 src_install()
 {
-	dobin keyart
+	do_install()
+	{
+		python_fix_shebang keyart
+		python_doexe keyart
+	}
+	python_foreach_impl do_install
 }
