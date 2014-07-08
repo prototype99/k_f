@@ -18,7 +18,7 @@ IUSE=""
 EGIT_REPO_URI="https://github.com/atoponce/${PN}"
 
 DEPEND=""
-RDEPEND=""
+RDEPEND="app-crypt/gnupg"
 
 src_prepare()
 {
@@ -33,4 +33,6 @@ src_install()
 		python_doexe keyart
 	}
 	python_foreach_impl do_install
+
+	doman doc/keyart.1
 }
