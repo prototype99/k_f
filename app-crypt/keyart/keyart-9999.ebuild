@@ -29,6 +29,5 @@ src_prepare()
 src_install()
 {
 	python_foreach_impl python_doexe keyart
-
 	doman doc/keyart.1
 }
