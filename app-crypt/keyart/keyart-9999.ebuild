@@ -23,16 +23,12 @@ RDEPEND="app-crypt/gnupg"
 src_prepare()
 {
 	python_copy_sources
+	python_foreach_impl python_fix_shebang keyart
 }
 
 src_install()
 {
-	do_install()
-	{
-		python_fix_shebang keyart
-		python_doexe keyart
-	}
-	python_foreach_impl do_install
+	python_foreach_impl python_doexe keyart
 
 	doman doc/keyart.1
 }
