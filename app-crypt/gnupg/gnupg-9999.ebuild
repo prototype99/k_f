@@ -13,7 +13,7 @@ HOMEPAGE="http://gnupg.org/"
 
 LICENSE="GPL-2"
 SLOT="2.1"
-KEYWORDS="~amd64 ~x86"
+KEYWORDS=""
 IUSE=""
 
 REQUIRED_USE=""
@@ -65,5 +65,5 @@ src_install(){
 	dosym gpg2.1-gpg2 /usr/bin/gpg2.1
 	dosym gpg2.1-gpg-agent /usr/bin/gpg2.1-agent
 	dosym gpg2.1-dirmngr /usr/bin/dirmngr
-    dosym gpg2.1-dirmngr-client /usr/bin/dirmngr-client
+    	dosym gpg2.1-dirmngr-client /usr/bin/dirmngr-client
 }

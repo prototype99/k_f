@@ -9,7 +9,7 @@ DESCRIPTION="Leverage the OpenPGP web of trust for OpenSSH and Web authenticatio
 HOMEPAGE="http://web.monkeysphere.info/"
 
 LICENSE="GPL-3"
-SLOT="0"
+SLOT="0/0"
 IUSE=""
 SRC_URI="mirror://debian/pool/monkeysphere/m/monkeysphere/monkeysphere_${PV}.orig.tar.gz"
 KEYWORDS="~amd64 ~x86"
