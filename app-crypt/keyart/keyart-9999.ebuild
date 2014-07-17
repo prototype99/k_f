@@ -12,7 +12,7 @@ HOMEPAGE="https://pthree.org/2014/04/18/the-drunken-bishop-for-openpgp-keys/"
 
 LICENSE="GPL-3"
 SLOT="0"
-KEYWORDS="~amd64 ~x86"
+KEYWORDS=""
 IUSE=""
 
 EGIT_REPO_URI="https://github.com/atoponce/${PN}"
