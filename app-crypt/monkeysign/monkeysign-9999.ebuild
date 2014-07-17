@@ -12,7 +12,7 @@ HOMEPAGE="http://web.monkeysphere.info/"
 
 LICENSE="GPL-3"
 SLOT="0"
-KEYWORDS="~amd64 ~x86"
+KEYWORDS=""
 IUSE="gnome"
 
 EGIT_REPO_URI="git://git.monkeysphere.info/${PN}"
