@@ -20,8 +20,8 @@ RDEPEND=""
 src_unpack()
 {
 	#This package ships as a single .c file, manual unpack to ensure the file is copied to the work dir
-	mkdir -p "${S}"
-	cp "${DISTDIR}/oid.c" "${S}"
+	mkdir -p "${S}" || die 
+	cp "${DISTDIR}/oid.c" "${S}" || die
 }
 
 src_compile()
