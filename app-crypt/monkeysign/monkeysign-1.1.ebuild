@@ -8,7 +8,7 @@ PYTHON_COMPAT=( python{2_6,2_7} )
 inherit eutils distutils-r1
 
 DESCRIPTION="Monkeysign"
-HOMEPAGE="http://web.monkeysphere.info/"
+HOMEPAGE="http://web.monkeysphere.info/monkeysign/"
 
 LICENSE="GPL-3"
 SLOT="0"
