@@ -25,6 +25,7 @@ RDEPEND="dev-python/pygtk:2=
 	media-gfx/qrencode-python:0=
 	dev-python/setuptools:0=
 	app-crypt/gnupg:0=
+	virtual/mta
 	gnome? ( x11-themes/gnome-icon-theme:0= )
 	dev-python/docutils:0=
 "

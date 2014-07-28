@@ -26,6 +26,7 @@ RDEPEND="${DEPEND}
 	virtual/python-imaging:0=
 	dev-python/setuptools:0=
 	app-crypt/gnupg:0=
+	virtual/mta
 	gnome? ( x11-themes/gnome-icon-theme:0= )"
 
 src_prepare()
