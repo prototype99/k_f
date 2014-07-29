@@ -6,7 +6,7 @@ diff -r 9dc4a391dd6d mpi/generic/mpi-asm-defs.h
 - * need to define the types on a per-CPU basis, so it is done with
 - * this file here.  */
 +/* AMD64 compiled with x32 fails in assembly due to incorrect 
-+ * width of int detected. Using compiler information to detect
++ * size of long detected. Using compiler information to detect
 + * this since it is no longer per-architecture
 + */
 +#if defined(__GNUC__) && __GNUC__ >= 3 && defined(__x86_64__) && defined(__ILP32__)
