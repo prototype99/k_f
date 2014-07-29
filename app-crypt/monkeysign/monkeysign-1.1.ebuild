@@ -3,31 +3,32 @@
 # $Header: $
 
 EAPI=5
-PYTHON_COMPAT=( python{2_6,2_7} )
+PYTHON_COMPAT=( python2_7 )
 
 inherit eutils distutils-r1
 
-DESCRIPTION="Monkeysign"
+DESCRIPTION="A user-friendly commandline tool to sign OpenGPG keys"
 HOMEPAGE="http://web.monkeysphere.info/monkeysign/"
 
 LICENSE="GPL-3"
 SLOT="0"
 KEYWORDS="~amd64 ~x86"
-IUSE="gnome"
+IUSE=""
 
 SRC_URI="mirror://debian/pool/main/m/monkeysign/monkeysign_${PV}.tar.gz"
 
-DEPEND="dev-python/docutils:0=
-	dev-python/pygtk:2=
+CDEPEND="dev-python/pygtk:2=
 	media-gfx/zbar:0=[python,gtk,imagemagick]
-	media-gfx/qrencode-python:0="
+	media-gfx/qrencode-python:0=
+	virtual/python-imaging:0="
 
-RDEPEND="${DEPEND}
-	virtual/python-imaging:0=
+DEPEND="dev-python/docutils:0=
 	dev-python/setuptools:0=
-	app-crypt/gnupg:0=
+	${CDEPEND}"
+
+RDEPEND="app-crypt/gnupg:0=
 	virtual/mta
-	gnome? ( x11-themes/gnome-icon-theme:0= )"
+	${CDEPEND}"
 
 src_prepare()
 {
@@ -39,5 +40,5 @@ src_prepare()
 src_install()
 {
 	distutils-r1_src_install
-	use gnome && domenu "${FILESDIR}/monkeysign.desktop"
+	domenu "${FILESDIR}/monkeysign.desktop"
 }

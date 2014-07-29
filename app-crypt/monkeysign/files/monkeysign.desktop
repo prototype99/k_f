@@ -3,9 +3,8 @@ Encoding=UTF-8
 Version=1.0
 Name=Monkeyscan
 Comment=Monkeyscan part of monkeysign
-Categories=GTK;GNOME;Internet;
+Categories=GTK;GNOME;X-Internet;
 Exec=/usr/bin/monkeyscan
-Icon=format-text-direction-ltr
 Terminal=false
 Type=Application
 

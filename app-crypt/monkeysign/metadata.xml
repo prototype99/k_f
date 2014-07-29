@@ -2,6 +2,7 @@
 <!DOCTYPE pkgmetadata SYSTEM "http://www.gentoo.org/dtd/metadata.dtd">
 <pkgmetadata>
 	<maintainer>
-		<email>kf@sumptuouscapital.com</email>
+		<email>k_f@gentoo.org</email>
+		<name>Kristian Fiskerstrand</name>
 	</maintainer>
 </pkgmetadata>
