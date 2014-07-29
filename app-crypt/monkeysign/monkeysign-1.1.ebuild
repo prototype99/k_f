@@ -19,7 +19,7 @@ SRC_URI="mirror://debian/pool/main/m/monkeysign/monkeysign_${PV}.tar.gz"
 
 CDEPEND="dev-python/pygtk[${PYTHON_USEDEP}]
 	media-gfx/zbar:0=[python,gtk,imagemagick]
-	media-gfx/qrencode-python:0=
+	media-gfx/qrencode-python[${PYTHON_USEDEP}]
 	virtual/python-imaging:0="
 
 DEPEND="dev-python/docutils[${PYTHON_USEDEP}]
