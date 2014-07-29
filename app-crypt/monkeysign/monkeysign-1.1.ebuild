@@ -5,7 +5,7 @@
 EAPI=5
 PYTHON_COMPAT=( python2_7 )
 
-inherit eutils distutils-r1
+inherit distutils-r1
 
 DESCRIPTION="A user-friendly commandline tool to sign OpenGPG keys"
 HOMEPAGE="http://web.monkeysphere.info/monkeysign/"
@@ -17,25 +17,22 @@ IUSE=""
 
 SRC_URI="mirror://debian/pool/main/m/monkeysign/monkeysign_${PV}.tar.gz"
 
-CDEPEND="dev-python/pygtk:2=
+CDEPEND="dev-python/pygtk[${PYTHON_USEDEP}]
 	media-gfx/zbar:0=[python,gtk,imagemagick]
 	media-gfx/qrencode-python:0=
 	virtual/python-imaging:0="
 
-DEPEND="dev-python/docutils:0=
-	dev-python/setuptools:0=
+DEPEND="dev-python/docutils[${PYTHON_USEDEP}]
+	dev-python/setuptools[${PYTHON_USEDEP}]
 	${CDEPEND}"
 
 RDEPEND="app-crypt/gnupg:0=
 	virtual/mta
 	${CDEPEND}"
 
-src_prepare()
-{
-	epatch "${FILESDIR}/${P}-basename.patch"\
-	       "${FILESDIR}/${P}-rst2s5.patch"
-	distutils-r1_src_prepare
-}
+PATCHES=("${FILESDIR}/${P}-basename.patch"
+         "${FILESDIR}/${P}-rst2s5.patch"
+	)
 
 src_install()
 {
