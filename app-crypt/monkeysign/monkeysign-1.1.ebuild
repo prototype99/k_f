@@ -35,7 +35,7 @@ PATCHES=("${FILESDIR}/${P}-basename.patch"
          "${FILESDIR}/${P}-rst2s5.patch"
 	)
 
-src_install()
+python_instal_all()
 {
 	distutils-r1_python_install_all
 	domenu "${FILESDIR}/monkeysign.desktop"
