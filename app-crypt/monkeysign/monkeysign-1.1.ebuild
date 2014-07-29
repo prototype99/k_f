@@ -18,7 +18,7 @@ KEYWORDS="~amd64 ~x86"
 IUSE=""
 
 
-CDEPEND="dev-python/pygtk[${PYTHON_USEDEP}]
+CDEPEND="dev-python/pygtk:2[${PYTHON_USEDEP}]
 	media-gfx/zbar:0=[python,gtk,imagemagick]
 	media-gfx/qrencode-python[${PYTHON_USEDEP}]
 	virtual/python-imaging:0="
@@ -37,6 +37,6 @@ PATCHES=("${FILESDIR}/${P}-basename.patch"
 
 src_install()
 {
-	distutils-r1_src_install
+	distutils-r1_python_install_all
 	domenu "${FILESDIR}/monkeysign.desktop"
 }
