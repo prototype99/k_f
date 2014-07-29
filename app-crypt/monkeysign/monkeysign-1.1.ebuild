@@ -10,12 +10,13 @@ inherit distutils-r1
 DESCRIPTION="A user-friendly commandline tool to sign OpenGPG keys"
 HOMEPAGE="http://web.monkeysphere.info/monkeysign/"
 
+SRC_URI="mirror://debian/pool/main/m/monkeysign/monkeysign_${PV}.tar.gz"
+
 LICENSE="GPL-3"
 SLOT="0"
 KEYWORDS="~amd64 ~x86"
 IUSE=""
 
-SRC_URI="mirror://debian/pool/main/m/monkeysign/monkeysign_${PV}.tar.gz"
 
 CDEPEND="dev-python/pygtk[${PYTHON_USEDEP}]
 	media-gfx/zbar:0=[python,gtk,imagemagick]
