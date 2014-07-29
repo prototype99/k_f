@@ -17,25 +17,24 @@ SLOT="0"
 KEYWORDS="~amd64 ~x86"
 IUSE=""
 
-
 CDEPEND="dev-python/pygtk:2[${PYTHON_USEDEP}]
 	media-gfx/zbar:0=[python,gtk,imagemagick]
 	media-gfx/qrencode-python[${PYTHON_USEDEP}]
-	virtual/python-imaging:0="
+	virtual/python-imaging[${PYTHON_USEDEP}]"
 
 DEPEND="dev-python/docutils[${PYTHON_USEDEP}]
 	dev-python/setuptools[${PYTHON_USEDEP}]
 	${CDEPEND}"
 
-RDEPEND="app-crypt/gnupg:0=
+RDEPEND="app-crypt/gnupg
 	virtual/mta
 	${CDEPEND}"
 
 PATCHES=("${FILESDIR}/${P}-basename.patch"
-         "${FILESDIR}/${P}-rst2s5.patch"
+	 "${FILESDIR}/${P}-rst2s5.patch"
 	)
 
-python_instal_all()
+python_install_all()
 {
 	distutils-r1_python_install_all
 	domenu "${FILESDIR}/monkeysign.desktop"
