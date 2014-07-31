@@ -34,6 +34,11 @@ PATCHES=("${FILESDIR}/${P}-basename.patch"
 	 "${FILESDIR}/${P}-rst2s5.patch"
 	)
 
+python_test() 
+{
+	"${PYTHON}" ./test.py || die "Tests fails"
+}
+
 python_install_all()
 {
 	distutils-r1_python_install_all
