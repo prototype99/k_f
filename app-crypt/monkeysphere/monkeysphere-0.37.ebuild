@@ -12,7 +12,7 @@ LICENSE="GPL-3"
 SLOT="0/0"
 IUSE=""
 SRC_URI="mirror://debian/pool/monkeysphere/m/monkeysphere/monkeysphere_${PV}.orig.tar.gz http://archive.monkeysphere.info/debian/pool/monkeysphere/m/monkeysphere/monkeysphere_${PV}.orig.tar.gz"
-KEYWORDS="~amd64 ~x86"
+KEYWORDS="~amd64 ~arm ~x86"
 
 DOCS=( README Changelog )
 
@@ -33,7 +33,7 @@ pkg_setup()
 	enewgroup monkeysphere
 	enewuser monkeysphere -1 -1 /var/lib/monkeysphere monkeysphere
 	# Using fperms and fowner in src_install leave unusable config with error
-        # Authentication refused: bad ownership or modes for directory /var/lib/monkeysphere
+	# Authentication refused: bad ownership or modes for directory /var/lib/monkeysphere
 	chown root:monkeysphere /var/lib/monkeysphere
 	chmod 751 /var/lib/monkeysphere
 }
