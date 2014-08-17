@@ -19,11 +19,11 @@ DOCS=( README Changelog )
 # Tests fail upstream for SSH connection. Issue has been reported.
 RESTRICT="test"
 
-DEPEND="app-crypt/gnupg:0=
-	net-misc/socat:0=
-	dev-perl/Crypt-OpenSSL-RSA:0=
-	dev-perl/Digest-SHA1:0=
-	app-misc/lockfile-progs:0="
+DEPEND="app-crypt/gnupg:0
+	net-misc/socat:0
+	dev-perl/Crypt-OpenSSL-RSA:0
+	dev-perl/Digest-SHA1:0
+	app-misc/lockfile-progs:0"
 
 RDEPEND="${DEPEND}"
 
