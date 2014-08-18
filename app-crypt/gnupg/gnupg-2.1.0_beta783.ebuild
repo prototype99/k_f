@@ -23,6 +23,7 @@ COMMON_DEPEND_LIBS="
 	>=dev-libs/libgpg-error-1.13
 	>=dev-libs/libksba-1.0.7
 	>=net-misc/curl-7.10
+	>=net-libs/gnutls-3.0
 	sys-libs/zlib
 	net-nds/openldap
 	bzip2? ( app-arch/bzip2 )
