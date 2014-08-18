@@ -14,7 +14,7 @@ SRC_URI="mirror://gnupg/gnupg/unstable/${MY_P}.tar.bz2"
 LICENSE="GPL-3"
 SLOT="0"
 KEYWORDS=""
-IUSE="adns bzip2 doc nls readline static selinux smartcard usb"
+IUSE="bzip2 doc nls readline static selinux smartcard usb"
 
 COMMON_DEPEND_LIBS="
 	dev-libs/npth
@@ -25,7 +25,6 @@ COMMON_DEPEND_LIBS="
 	>=net-misc/curl-7.10
 	sys-libs/zlib
 	net-nds/openldap
-	adns? ( >=net-libs/adns-1.4 )
 	bzip2? ( app-arch/bzip2 )
 	readline? ( sys-libs/readline )
 	smartcard? ( usb? ( virtual/libusb:0 ) )
