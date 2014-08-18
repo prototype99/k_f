@@ -91,7 +91,6 @@ src_configure() {
 		--enable-gpgsm \
 		--enable-agent \
 		"${myconf[@]}" \
-		$(use_with adns) \
 		$(use_enable bzip2) \
 		$(use_enable nls) \
 		$(use_with readline) \
