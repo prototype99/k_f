@@ -33,6 +33,7 @@ RDEPEND="app-crypt/gnupg
 
 PATCHES=("${FILESDIR}/${PN}-1.1-basename.patch"
 	 "${FILESDIR}/${PN}-1.1-rst2s5.patch"
+	 "${FILESDIR}/${P}-test-no-emit-version.patch"
 	)
 
 python_test() 
