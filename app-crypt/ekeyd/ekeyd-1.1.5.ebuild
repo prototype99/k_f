@@ -37,9 +37,12 @@ pkg_setup() {
 }
 
 src_prepare() {
-	for i in `seq 1 6`; do
-		epatch "${FILESDIR}/ekeyd-$i.patch";
-	done;
+	epatch "${FILESDIR}/${P}-const_char_usage.patch";
+	epatch "${FILESDIR}/${P}-enoent.patch";
+	epatch "${FILESDIR}/${P}-path-fixes.patch";
+	epatch "${FILESDIR}/${P}-udev-rule.patch";
+	epatch "${FILESDIR}/${P}-remove-werror.patch";
+	epatch "${FILESDIR}/${P}-misc.patch";
 }
 
 src_compile() {
