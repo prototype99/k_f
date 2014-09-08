@@ -47,7 +47,7 @@ pkg_postinst() {
 	elog "pull in at: http://www.picotech.com/linux.html"
 	elog "Note that you have to be either root or member of the group pico to"
 	elog "be able to use picoscope devices. You can add a user to the pico group"
-	elog "using `usermod -a -G pico <username>`"
+	elog "using usermod -a -G pico <username>"
 }
 
 src_unpack()
