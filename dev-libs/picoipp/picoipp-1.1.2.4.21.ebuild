@@ -13,7 +13,7 @@ MY_PV=${MY_V[0]}"."${MY_V[1]}"."${MY_V[2]}"-"${MY_V[3]}"r"${MY_V[4]}
 SRC_URI="amd64? ( http://labs.picotech.com/rpm/x86_64/libpicoipp-${MY_PV}.x86_64.rpm )"
 LICENSE="PICO"
 SLOT="0"
-KEYWORDS="~amd64 ~x86"
+KEYWORDS="~amd64"
 IUSE=""
 
 CDEPEND=""
