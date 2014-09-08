@@ -43,9 +43,11 @@ pkg_setup()
 pkg_postinst() {
 	elog "Please note that you will have to install the corresponding driver"
 	elog "for your device. Consult dev-libs/psXXXX packages corresponding"
-	elog "to your device"
+	elog "to your device. You may get some help determining which driver to"
+	elog "pull in at: http://www.picotech.com/linux.html"
 	elog "Note that you have to be either root or member of the group pico to"
-	elog "be able to use picoscope devices."
+	elog "be able to use picoscope devices. You can add a user to the pico group"
+	elog "using `usermod -a -G pico <username>`"
 }
 
 src_unpack()
