@@ -6,7 +6,7 @@ EAPI=5
 
 inherit rpm
 
-DESCRIPTION="PicoScope 2000 series Linux driver"
+DESCRIPTION="PicoScope 4000A series Linux driver"
 HOMEPAGE="http://www.picotech.com/picoscope-oscilloscope-software.html"
 MY_V=(${PV//./ })
 MY_PV=${MY_V[0]}"."${MY_V[1]}"."${MY_V[2]}"-"${MY_V[3]}"r"${MY_V[4]}
