@@ -18,11 +18,13 @@ IUSE=""
 
 REQUIRED_USE=""
 #Texinfo version 4.8 segfaults, force higher version.  
+CDEPEND=">=dev-libs/libgpg-error-1.13"
 DEPEND="
 	>=sys-apps/texinfo-5.2:0
-	>=dev-libs/libgpg-error-1.13
+	media-gfx/transfig
+	${CDEPEND}
 "
-RDEPEND="${DEPEND}"
+RDEPEND="${CDEPEND}"
 
 src_prepare() {
 	epatch "${FILESDIR}/0002-Fix-building-with-GNU-Automake-1.13.patch";

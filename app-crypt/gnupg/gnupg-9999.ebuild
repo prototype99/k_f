@@ -43,6 +43,7 @@ RDEPEND="${DEPEND}"
 
 src_prepare() {
 	epatch "${FILESDIR}/gnupg_master_0002-Fix-building-with-GNU-Automake-1.13.patch"
+	epatch "${FILESDIR}/0001-doc-gpg-agent-Add-missing-entry-for-allow-preset-pas.patch"
 
 	autoreconf || die "Autoreconf fail"
 	./autogen.sh || die "Autgen script failed"
