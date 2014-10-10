@@ -22,6 +22,7 @@ CDEPEND=">=dev-libs/libgpg-error-1.13"
 DEPEND="
 	>=sys-apps/texinfo-5.2:0
 	media-gfx/transfig
+	app-text/ghostscript-gpl
 	${CDEPEND}
 "
 RDEPEND="${CDEPEND}"
