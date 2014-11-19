@@ -10,7 +10,7 @@ HOMEPAGE="http://apps.owncloud.com/content/show.php/Usage+Charts+(+owncloud+7+)?
 LICENSE="MIT"
 SLOT="0"
 IUSE=""
-SRC_URI="http://apps.owncloud.com/content/download.php?content=166746&id=1&tan=98284740 -> ocusagecharts.zip"
+SRC_URI="http://apps.owncloud.com/CONTENT/content-files/166746-ocusagecharts.zip -> ocusagecharts.zip"
 DEPEND=""
 KEYWORDS="~amd64 ~x86"
 
