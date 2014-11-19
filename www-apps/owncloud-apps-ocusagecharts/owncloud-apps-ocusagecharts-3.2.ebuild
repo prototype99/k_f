@@ -16,6 +16,8 @@ KEYWORDS="~amd64 ~x86"
 
 RDEPEND=""
 
+S="${WORKDIR}/ocusagecharts/"
+
 src_compile()
 {
 	#No compilation needed for this pacakge
@@ -24,6 +26,6 @@ src_compile()
 
 src_install()
 {
-	insinto /var/lib/owncloud/apps
+	insinto "/var/lib/owncloud/apps/${PN}"
 	doins -r *
 }
