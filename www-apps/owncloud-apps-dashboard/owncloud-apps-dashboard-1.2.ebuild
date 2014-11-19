@@ -9,7 +9,7 @@ inherit eutils
 DESCRIPTION="Gives the ability to display various statistics about users."
 HOMEPAGE="http://apps.owncloud.com/content/show.php/Usage+Charts+(+owncloud+7+)?content=166746"
 
-LICENSE="MIT"
+LICENSE="AGPL"
 SLOT="0"
 IUSE=""
 SRC_URI="https://github.com/ppaysant/dashboard/archive/v1.2.zip -> dashboard.zip"
