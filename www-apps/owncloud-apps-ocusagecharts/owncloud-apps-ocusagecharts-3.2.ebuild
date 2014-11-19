@@ -22,12 +22,6 @@ RDEPEND=">=www-apps/owncloud-7.0.0"
 MY_PN="ocusagecharts"
 S="${WORKDIR}/${MY_PN}/"
 
-src_compile()
-{
-	#No compilation needed for this pacakge
-	echo "ok" || die
-}
-
 src_install()
 {
 	insinto "/var/lib/owncloud/apps/${MY_PN}"
