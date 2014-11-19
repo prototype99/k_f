@@ -24,6 +24,10 @@ RDEPEND=">=www-apps/owncloud-7.0.0"
 
 S="${WORKDIR}/${MY_PN}/"
 
+src_prepare()
+{
+	rm Makefile || die "Delete of Makefile failed"
+}
 src_install()
 {
 	insinto "/var/lib/owncloud/apps/${MY_PN}"
