@@ -27,6 +27,6 @@ src_compile()
 
 src_install()
 {
-	insinto "/var/lib/owncloud/apps/${PN}"
+	insinto "/var/lib/owncloud/apps/${MY_PN}"
 	doins -r *
 }
