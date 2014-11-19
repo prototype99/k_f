@@ -16,7 +16,8 @@ KEYWORDS="~amd64 ~x86"
 
 RDEPEND=""
 
-S="${WORKDIR}/ocusagecharts/"
+MY_PN="ocusagecharts"
+S="${WORKDIR}/${MY_PN}/"
 
 src_compile()
 {
