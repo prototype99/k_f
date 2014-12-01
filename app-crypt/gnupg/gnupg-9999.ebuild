@@ -63,6 +63,7 @@ S="${WORKDIR}/${MY_P}"
 src_prepare() {
 	epatch "${FILESDIR}/gnupg_master_0002-Fix-building-with-GNU-Automake-1.13.patch"
 	epatch "${FILESDIR}/${PN}-2.0.17-gpgsm-gencert.patch"
+#	epatch "${FILESDIR}/${PN}-2.1-hkps-schema.patch"
 	epatch_user
 	autoreconf || die "Autoreconf fail"
 	./autogen.sh || die "Autgen script failed"
