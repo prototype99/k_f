@@ -11,7 +11,7 @@ EGIT_BRANCH="master"
 
 inherit distutils-r1 git-r3
 
-EGIT_REPO_URI="git://git.overlays.gentoo.org/proj/gentoo-keys.git"
+EGIT_REPO_URI="git://git.sumptuouscapital.com/gentoo-keys.git"
 
 DESCRIPTION="A Openpgp/gpg key management program and python libs"
 HOMEPAGE="https://wiki.gentoo.org/wiki/Project:Gentoo-keys"
