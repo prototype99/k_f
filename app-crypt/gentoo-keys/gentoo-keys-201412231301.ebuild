@@ -22,6 +22,6 @@ S="${WORKDIR}"
 src_prepare(){ true; }
 
 src_install(){
-	insinto /var/lib/gentoo/gkeys/keyrings/gentoo/release
-	doins -r gentoo/release/*
+	insinto /var/lib/gentoo/gkeys/keyrings
+	doins -r gentoo
 }
