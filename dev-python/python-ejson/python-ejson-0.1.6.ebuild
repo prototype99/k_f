@@ -8,18 +8,21 @@ PYTHON_COMPAT=(python2_7)
 
 inherit distutils-r1
 
-DESCRIPTION="SIP SIMPLE client SDK is a Software Development Kit"
-HOMEPAGE="http://sipsimpleclient.org"
-SRC_URI="http://download.ag-projects.com/SipClient/${P}.tar.gz"
+MY_PN="ejson"
+MY_P="${MY_PN}-${PV}"
 
-LICENSE="GPL-3"
+DESCRIPTION="Extensible json serializer/deserializer library"
+HOMEPAGE="https://github.com/Yipit/ejson"
+SRC_URI="https://pypi.python.org/packages/source/p/${MY_PN}/${MY_P}.tar.gz"
+
+LICENSE="GPL-2"
 SLOT="0"
 IUSE=""
 
 KEYWORDS="~amd64 ~x86"
 
-CDEPEND="dev-python/twisted-names[${PYTHON_USEDEP}]"
-
+CDEPEND=""
 DEPEND="${CDEPEND}"
-
 RDEPEND="${CDEPEND}"
+
+S="${WORKDIR}/${MY_P}"

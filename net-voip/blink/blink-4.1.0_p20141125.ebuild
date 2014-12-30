@@ -18,18 +18,18 @@ IUSE=""
 
 KEYWORDS="~amd64 ~x86"
 
-CDEPEND="dev-python/PyQt4[${PYTHON_USEDEP}]
+CDEPEND="dev-python/PyQt4[webkit,${PYTHON_USEDEP}]
 	 dev-python/lxml[${PYTHON_USEDEP}]
 	 dev-python/cython[${PYTHON_USEDEP}]
 	 dev-python/python-application[${PYTHON_USEDEP}]
 	 dev-python/python-cjson[${PYTHON_USEDEP}]
-	 dev-python/eventlet[${PYTHON_USEDEP}]
 	 dev-python/twisted-core[${PYTHON_USEDEP}]
 	 dev-python/python-sipsimple[${PYTHON_USEDEP}]
 	 dev-python/zope-interface[${PYTHON_USEDEP}]
 	 dev-python/python-dateutil[${PYTHON_USEDEP}]
 	 dev-python/django[${PYTHON_USEDEP}]
 	 dev-python/python-msrplib[${PYTHON_USEDEP}]
+	 dev-python/redis-py[${PYTHON_USEDEP}]
 	 net-libs/libvncserver"
 
 DEPEND="${CDEPEND}"
