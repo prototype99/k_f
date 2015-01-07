@@ -28,13 +28,6 @@ RDEPEND="${DEPEND}
 
 S="${WORKDIR}/$P/gkeys-gen"
 
-python_prepare_all() {
-	distutils-r1_python_prepare_all
-	# copy these 2 into our subdir from the master level
-	cp ../LICENSE ./ || die "cp LICENSE failed"
-	cp ../README.md ./ || die "cp README.me failed"
-}
-
 pkg_postinst() {
 	einfo
 	einfo "This is experimental software."
