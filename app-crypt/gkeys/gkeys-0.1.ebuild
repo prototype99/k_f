@@ -43,6 +43,9 @@ pkg_preinst() {
 }
 
 pkg_postinst() {
+	gkeys fetch-seed -C gentoo-devs || die "Unable to fetch seeds"
+	gkeys install-key -C gentoo-devs || die "Unable to install developer keys"
+
 	einfo
 	einfo "This is experimental software."
 	einfo "The API's it installs should be considered unstable"
