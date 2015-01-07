@@ -28,10 +28,6 @@ RDEPEND="${DEPEND}
 	dev-python/snakeoil[${PYTHON_USEDEP}]
 	app-crypt/gentoo-keys
 	"
-python_prepare_all() {
-	distutils-r1_python_prepare_all
-	mkdir doc || die "Unable to create doc dir"
-}
 python_install_all() {
 	distutils-r1_python_install_all
 	keepdir /var/log/gkeys
