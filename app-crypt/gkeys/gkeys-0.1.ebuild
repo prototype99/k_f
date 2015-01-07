@@ -18,7 +18,7 @@ IUSE=""
 
 SRC_URI="http://dev.gentoo.org/~dolsen/releases/gkeys/gkeys-0.1.tar.bz2"
 
-KEYWORDS=""
+KEYWORDS="~amd64 ~x86"
 
 DEPEND=""
 RDEPEND="${DEPEND}
