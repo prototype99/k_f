@@ -10,7 +10,7 @@ inherit distutils-r1
 
 DESCRIPTION="An OpenPGP/GPG tool for generating keys to spec"
 HOMEPAGE="https://wiki.gentoo.org/wiki/Project:Gentoo-keys"
-SRC_URI=""
+SRC_URI="http://dev.gentoo.org/~dolsen/releases/gkeys/gkeys-0.1.tar.bz2"
 
 LICENSE="GPL-2"
 SLOT="0"
@@ -20,7 +20,7 @@ KEYWORDS="~amd64 ~x86"
 
 DEPEND=""
 RDEPEND="${DEPEND}
-	>=app-crypt/gnupg-2.0.0
+	app-crypt/gnupg
 	dev-python/snakeoil[${PYTHON_USEDEP}]
 	dev-python/pygpgme[${PYTHON_USEDEP}]
 	=app-crypt/gkeys-0.1[${PYTHON_USEDEP}]
