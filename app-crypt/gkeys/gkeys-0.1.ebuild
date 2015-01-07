@@ -29,8 +29,6 @@ RDEPEND="${DEPEND}
 	app-crypt/gentoo-keys
 	"
 
-S="${WORKDIR}/$P/gkeys"
-
 python_install_all() {
 	distutils-r1_python_install_all
 	keepdir /var/log/gkeys
