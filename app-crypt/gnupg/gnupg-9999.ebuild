@@ -4,11 +4,12 @@
 
 EAPI="5"
 
-inherit eutils flag-o-matic toolchain-funcs git-2
+inherit autotools eutils flag-o-matic toolchain-funcs git-2
 
 DESCRIPTION="The GNU Privacy Guard, a GPL pgp replacement"
 HOMEPAGE="http://www.gnupg.org/"
 
+WANT_AUTOMAKE=1.14
 EGIT_REPO_URI="git://git.gnupg.org/${PN}.git"
 
 LICENSE="GPL-3"
@@ -37,6 +38,7 @@ COMMON_DEPEND_BINS="|| ( app-crypt/pinentry app-crypt/pinentry-qt )"
 # Existence of executables is checked during configuration.
 DEPEND="${COMMON_DEPEND_LIBS}
 	${COMMON_DEPEND_BINS}
+	sys-devel/automake:1.14
 	static? (
 		>=dev-libs/libassuan-2[static-libs]
 		>=dev-libs/libgcrypt-1.4[static-libs]
@@ -61,9 +63,7 @@ REQUIRED_USE="smartcard? ( !static )"
 S="${WORKDIR}/${MY_P}"
 
 src_prepare() {
-	epatch "${FILESDIR}/gnupg_master_0002-Fix-building-with-GNU-Automake-1.13.patch"
 	epatch "${FILESDIR}/${PN}-2.0.17-gpgsm-gencert.patch"
-#	epatch "${FILESDIR}/${PN}-2.1-hkps-schema.patch"
 	epatch_user
 	autoreconf || die "Autoreconf fail"
 	./autogen.sh || die "Autgen script failed"
