@@ -7,8 +7,10 @@ EAPI=5
 inherit autotools flag-o-matic user git-2
 
 DESCRIPTION="General purpose crypto library based on the code used in GnuPG"
-EGIT_REPO_URI="git://git.gnupg.org/${PN}.git"
 HOMEPAGE="http://gnupg.org/"
+
+WANT_AUTOMAKE=1.14
+EGIT_REPO_URI="git://git.gnupg.org/${PN}.git"
 
 LICENSE="GPL-2"
 SLOT="0/20"
@@ -28,7 +30,6 @@ DEPEND="
 RDEPEND="${CDEPEND}"
 
 src_prepare() {
-	epatch "${FILESDIR}/0002-Fix-building-with-GNU-Automake-1.13.patch";
 	./autogen.sh || die "Autogen failed"
 }
 
