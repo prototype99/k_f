@@ -19,7 +19,8 @@ IUSE=""
 KEYWORDS="~amd64 ~x86"
 
 CDEPEND="dev-python/python-xcaplib[${PYTHON_USEDEP}]
-	 dev-python/dnspython[${PYTHON_USEDEP}]"
+	 dev-python/dnspython[${PYTHON_USEDEP}]
+	media-libs/libv4l"
 
 DEPEND="${CDEPEND}"
 
