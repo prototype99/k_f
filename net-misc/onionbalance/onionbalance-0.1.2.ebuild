@@ -28,7 +28,7 @@ DEPEND="${CDEPEND}
 	dev-python/setuptools[${PYTHON_USEDEP}]"
 
 RDEPEND="${CDEPEND}
-	net-misc/tor
+	>=net-misc/tor-0.2.7.1
 	"
 
 REQUIRED_USE=""
