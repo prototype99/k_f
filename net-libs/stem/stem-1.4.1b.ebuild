@@ -17,7 +17,9 @@ KEYWORDS="~amd64 ~arm ~mips ~ppc ~ppc64 ~x86 ~x86-fbsd"
 IUSE="test"
 
 DEPEND="test? ( dev-python/mock[${PYTHON_USEDEP}]
-	net-misc/tor )
+	net-misc/tor 
+        >=dev-python/pyflakes-0.7.3[${PYTHON_USEDEP}]
+        >=dev-python/pep8-1.4.2[${PYTHON_USEDEP}] )
 	dev-python/setuptools[${PYTHON_USEDEP}]"
 
 RDEPEND="net-misc/tor"
