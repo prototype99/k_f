@@ -63,7 +63,6 @@ REQUIRED_USE="smartcard? ( !static )"
 S="${WORKDIR}/${MY_P}"
 
 src_prepare() {
-	epatch "${FILESDIR}/${PN}-2.0.17-gpgsm-gencert.patch"
 	epatch_user
 	autoreconf || die "Autoreconf fail"
 	./autogen.sh || die "Autgen script failed"
@@ -97,7 +96,6 @@ src_configure() {
 		--docdir="${EPREFIX}/usr/share/doc/${PF}" \
 		--enable-gpg \
 		--enable-gpgsm \
-		--enable-agent \
 		--without-adns \
 		"${myconf[@]}" \
 		$(use_enable bzip2) \
