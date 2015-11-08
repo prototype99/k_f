@@ -11,7 +11,7 @@ HOMEPAGE="http://www.rtner.de/software/oid.html"
 LICENSE="WTFPL-2"
 SLOT="0"
 IUSE=""
-SRC_URI="http://dev.kfwebs.net/gentoo/oid-converter/oid-${PV}.c -> oid.c"
+SRC_URI="http://download.sumptuouscapital.com/gentoo/releases/${CATEGORY}/${PN}/oid-${PV}.c -> oid.c"
 DEPEND=""
 KEYWORDS="~amd64 ~x86"
 
