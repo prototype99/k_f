@@ -25,12 +25,12 @@ S=${WORKDIR}
 
 src_compile()
 {
-	#This package ships as a single .c file, manual compile process needed
-        $(tc-getCC) mathtex.c \
-            –DLATEX=\"$(which latex)\"   \
-            –DDVIPNG=\"$(which dvipng)\"   \
+        #This package ships as a single .c file, manual compile process needed
+        $(tc-getCC) mathtex.c 
+            -DLATEX=\"$(/usr/bin/which latex)\"   \
+            -DDVIPNG=\"$(/usr/bin/which dvipng)\"   \
             $(use png && echo "-DPNG") \
-            –o mathtex.cgi || die
+            -o mathtex.cgi || die
 }
 
 src_install()
