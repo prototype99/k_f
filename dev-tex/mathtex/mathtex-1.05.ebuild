@@ -29,15 +29,13 @@ src_compile()
         $(tc-getCC) mathtex.c \
             -DLATEX=\"$(/usr/bin/which latex)\"   \
             -DDVIPNG=\"$(/usr/bin/which dvipng)\"   \
-            -DCACHE=\"/var/lib/mathtex\" \
+            -DCACHE=\"../${PN}_cache\" \
             $(use png && echo "-DPNG") \
             -o mathtex.cgi || die
 }
 
 src_install()
 {
-	dodir /var/lib/${PN}
-	fperms 755 /var/lib/${PN}
 	dodoc README
 	exeinto /usr/libexec/${PN}
 	doexe ${PN}.cgi
