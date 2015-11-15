@@ -26,11 +26,11 @@ S=${WORKDIR}
 
 src_compile()
 {
-        local -a myconf = ( );
+        local -a myconf=( );
 
-        if use png then;
+        if use png; then
             myconf+=( "-DPNG" )
-        fi;
+        fi
 
         if use imagemagick; then
             myconf+=( 
