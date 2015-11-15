@@ -10,12 +10,12 @@ HOMEPAGE="http://www.forkosh.com/mathtex.html"
 
 LICENSE="GPL-3"
 SLOT="0"
-IUSE=""
+IUSE="png"
 SRC_URI="https://download.sumptuouscapital.com/gentoo/releases/${CATEGORY}/${PN}/${P}.zip"
 
 KEYWORDS="~amd64 ~x86"
 
-CDEPEND="dev-texlive/texlive-latex
+CDEPEND="virtual/latex-base
 	app-text/dvipng"
 
 DEPEND="${CDEPEND}"
@@ -29,6 +29,7 @@ src_compile()
 	$(tc-getCC) mathtex.c   \
 		–DLATEX=\"$(which latex)\"   \
 		–DDVIPNG=\"$(which dvipng)\"   \
+		$(use png && echo "-DPNG") \
 		–o mathtex.cgi || die
 }
 
