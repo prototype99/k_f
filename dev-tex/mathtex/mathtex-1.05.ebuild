@@ -26,7 +26,7 @@ S=${WORKDIR}
 src_compile()
 {
 	#This package ships as a single .c file, manual compile process needed
-	$(tc-getCC) mathtex.c   \
+        $(tc-getCC) mathtex.c \
             –DLATEX=\"$(which latex)\"   \
             –DDVIPNG=\"$(which dvipng)\"   \
             $(use png && echo "-DPNG") \
