@@ -29,7 +29,7 @@ src_compile()
         $(tc-getCC) mathtex.c \
             -DLATEX=\"$(/usr/bin/which latex)\"   \
             -DDVIPNG=\"$(/usr/bin/which dvipng)\"   \
-            -DCACHE="/var/lib/mathtex" \
+            -DCACHE=\"/var/lib/mathtex\" \
             $(use png && echo "-DPNG") \
             -o mathtex.cgi || die
 }
