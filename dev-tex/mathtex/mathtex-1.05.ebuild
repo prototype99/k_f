@@ -10,13 +10,14 @@ HOMEPAGE="http://www.forkosh.com/mathtex.html"
 
 LICENSE="GPL-3"
 SLOT="0"
-IUSE="png"
+IUSE="png imagemagick"
 SRC_URI="https://download.sumptuouscapital.com/gentoo/releases/${CATEGORY}/${PN}/${P}.zip"
 
 KEYWORDS="~amd64 ~x86"
 
 CDEPEND="virtual/latex-base
-	app-text/dvipng"
+	!imagemagick ( app-text/dvipng )
+	imagemagick ( app-text/dvipsk media-gfx/imagemagick )"
 
 DEPEND="${CDEPEND}"
 RDEPEND="${CDEPEND}"
@@ -25,12 +26,28 @@ S=${WORKDIR}
 
 src_compile()
 {
+        local -a myconf = ( );
+
+        if use png then;
+            myconf+=( "-DPNG" )
+        fi;
+
+        if use imagemagick; then
+            myconf+=( 
+               -DDVIPS=\"$(/usr/bin/which dvips)\"
+               -DCONVERT=\"$(/usr/bin/which convert)\"
+            )
+        else
+            myconf+=(
+                 -DDVIPNG=\"$(/usr/bin/which dvipng)\"
+            )
+        fi
+
         #This package ships as a single .c file, manual compile process needed
         $(tc-getCC) mathtex.c \
-            -DLATEX=\"$(/usr/bin/which latex)\"   \
-            -DDVIPNG=\"$(/usr/bin/which dvipng)\"   \
+            -DLATEX=\"$(/usr/bin/which latex)\" \
             -DCACHE=\"../${PN}_cache\" \
-            $(use png && echo "-DPNG") \
+            ${myconf[@]}
             -o mathtex.cgi || die
 }
 
