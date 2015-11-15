@@ -16,8 +16,8 @@ SRC_URI="https://download.sumptuouscapital.com/gentoo/releases/${CATEGORY}/${PN}
 KEYWORDS="~amd64 ~x86"
 
 CDEPEND="virtual/latex-base
-	!imagemagick ( app-text/dvipng )
-	imagemagick ( app-text/dvipsk media-gfx/imagemagick )"
+	!imagemagick? ( app-text/dvipng )
+	imagemagick? ( app-text/dvipsk media-gfx/imagemagick )"
 
 DEPEND="${CDEPEND}"
 RDEPEND="${CDEPEND}"
