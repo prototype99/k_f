@@ -47,7 +47,7 @@ src_compile()
         $(tc-getCC) mathtex.c \
             -DLATEX=\"$(/usr/bin/which latex)\" \
             -DCACHE=\"../${PN}_cache\" \
-            ${myconf[@]}
+            ${myconf[@]} \
             -o mathtex.cgi || die
 }
 
