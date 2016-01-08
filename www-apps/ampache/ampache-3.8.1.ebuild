@@ -28,7 +28,7 @@ need_httpd_cgi
 src_install() {
 	webapp_src_preinst
 
-	doman docs/man/man1/ampache.1.bz2
+	doman docs/man/man1/ampache.1
 	rm -rf docs/man || die "Unable to remove local man dir"	
 
 	dodoc docs/*
