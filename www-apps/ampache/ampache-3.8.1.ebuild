@@ -1,8 +1,8 @@
-# Copyright 1999-2014 Gentoo Foundation
+# Copyright 1999-2015 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
 # $Id$
 
-EAPI="2"
+EAPI="5"
 
 inherit webapp
 
@@ -14,8 +14,7 @@ LICENSE="GPL-2"
 KEYWORDS="~amd64 ~ppc ~sparc ~x86"
 IUSE="aac flac mp3 ogg transcode"
 
-RDEPEND="dev-lang/php[gd,hash,iconv,mysql,session,unicode,xml,zlib]
-	|| ( <dev-lang/php-5.3[pcre] >=dev-lang/php-5.3 )
+RDEPEND="dev-lang/php[gd,hash,iconv,mysql,pdo,session,unicode,xml,zlib]
 	transcode? ( media-sound/lame
 		aac? ( || ( media-libs/faad2 media-sound/alac_decoder ) )
 		flac? ( media-libs/flac )
