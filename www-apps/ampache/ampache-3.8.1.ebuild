@@ -29,7 +29,7 @@ src_install() {
 	webapp_src_preinst
 
 	dodoc -r docs
-	rm -rf docs/
+	rm -rf docs/ || die "Unable to remove local docs dir"
 
 	insinto "${MY_HTDOCSDIR}"
 	doins -r .
