@@ -31,7 +31,7 @@ src_install() {
 	doman docs/docs/man/man1/ampache.1.bz2
 	rm -rf docs/man || die "Unable to remove local man dir"	
 
-	dodoc -r docs
+	dodoc docs/*
 	rm -rf docs/ || die "Unable to remove local docs dir"
 
 	insinto "${MY_HTDOCSDIR}"
