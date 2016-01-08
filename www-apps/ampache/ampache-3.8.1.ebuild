@@ -28,7 +28,7 @@ need_httpd_cgi
 src_install() {
 	webapp_src_preinst
 
-	dodoc docs/*
+	dodoc -r docs
 	rm -rf docs/
 
 	insinto "${MY_HTDOCSDIR}"
