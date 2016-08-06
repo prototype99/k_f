@@ -36,7 +36,8 @@ Important: It is strongly recommended to set up SKS behind a
 reverse proxy. Instructions on properly configuring SKS can be
 found at https://bitbucket.org/skskeyserver/sks-keyserver/wiki/Peering"
 
-DEPEND="dev-lang/ocaml:0=
+DEPEND=">=dev-lang/ocaml-4:0=
+	dev-ml/camlp4
 	dev-ml/cryptokit:0=
 	sys-libs/db:5.3"
 RDEPEND="${DEPEND}"
