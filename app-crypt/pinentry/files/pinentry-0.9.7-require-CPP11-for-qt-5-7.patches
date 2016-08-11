@@ -1,10 +1,16 @@
-From 124d390bea44dd3a83784f2b3da50cac1396f86c Mon Sep 17 00:00:00 2001
+From 7384e2a575dde2809784d9f182fd1d247064c8a2 Mon Sep 17 00:00:00 2001
 From: Kristian Fiskerstrand <kf@sumptuouscapital.com>
 Date: Thu, 11 Aug 2016 14:44:37 +0200
-Subject: [PATCH] (m4/qt.m4) Qt-5.7 requires build using C++11
+Subject: [PATCH] Qt: Append -std=c++11 if building against Qt 5.7
 
-Add detection for Qt-5.7 and make sure --std=c++11 is passed if building
-against Qt 5.7
+ * m4/qt.m4: Append -std=c++11 to CFLAGS if building against Qt 5.7
+
+--
+Qt 5.7 enables C++11 for Qt modules, and any app relying on it require to be
+compiled with at least this standard.
+
+This patch adds detection for Qt 5.7 and make sure -std=c++11 is passed if
+building against Qt 5.7 or higher.
 ---
  m4/qt.m4 | 10 ++++++++++
  1 file changed, 10 insertions(+)
