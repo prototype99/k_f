@@ -1,80 +1,80 @@
-# Copyright 1999-2014 Gentoo Foundation
+# Copyright 1999-2016 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/app-crypt/gnupg/gnupg-2.1.0.ebuild,v 1.4 2014/11/09 01:42:34 k_f Exp $
+# $Id$
 
 EAPI="5"
 
-inherit autotools eutils flag-o-matic toolchain-funcs git-2
+inherit eutils flag-o-matic toolchain-funcs
 
-DESCRIPTION="The GNU Privacy Guard, a GPL pgp replacement"
+if [[ ${PV} == *9999* ]]; then
+	inherit autotools git-2
+fi
+
+DESCRIPTION="The GNU Privacy Guard, a GPL OpenPGP implementation"
 HOMEPAGE="http://www.gnupg.org/"
-
-WANT_AUTOMAKE=1.14
-EGIT_REPO_URI="git://git.gnupg.org/${PN}.git"
-
 LICENSE="GPL-3"
+
+if [[ ${PV} != *9999* ]]; then
+	MY_P="${P/_/-}"
+	SRC_URI="mirror://gnupg/gnupg/${MY_P}.tar.bz2"
+	KEYWORDS="~alpha ~amd64 ~arm ~arm64 ~hppa ~ia64 ~m68k ~mips ~ppc ~ppc64 ~s39    0 ~sh ~sparc ~x86"
+else
+	KEYWORDS=""
+	WANT_AUTOMAKE=1.14
+	EGIT_REPO_URI="git://git.gnupg.org/${PN}.git"
+fi
+
 SLOT="0"
 KEYWORDS=""
-IUSE="bzip2 doc +gnutls ldap nls readline static selinux smartcard tools usb"
-
-RESTRICT="test"
+IUSE="bzip2 doc +gnutls ldap nls readline selinux smartcard +system-cert-store tofu tools usb"
 
 COMMON_DEPEND_LIBS="
-	dev-libs/npth
-	>=dev-libs/libassuan-2
-	>=dev-libs/libgcrypt-1.6.2
-	>=dev-libs/libgpg-error-1.15
-	>=dev-libs/libksba-1.0.7
+	>=dev-libs/npth-1.2
+	>=dev-libs/libassuan-2.4.3
+	>=dev-libs/libgcrypt-1.7.3
+	>=dev-libs/libgpg-error-1.24
+	>=dev-libs/libksba-1.3.4
 	>=net-misc/curl-7.10
-	gnutls? ( >=net-libs/gnutls-3.0 )
+	gnutls? ( >=net-libs/gnutls-3.0:0= )
 	sys-libs/zlib
 	ldap? ( net-nds/openldap )
 	bzip2? ( app-arch/bzip2 )
-	readline? ( sys-libs/readline )
+	readline? ( sys-libs/readline:0= )
 	smartcard? ( usb? ( virtual/libusb:0 ) )
+	tofu? ( >=dev-db/sqlite-3.7 )
 	"
-COMMON_DEPEND_BINS="|| ( app-crypt/pinentry app-crypt/pinentry-qt )"
+COMMON_DEPEND_BINS="app-crypt/pinentry
+		   !app-crypt/dirmngr"
 
 # Existence of executables is checked during configuration.
 DEPEND="${COMMON_DEPEND_LIBS}
 	${COMMON_DEPEND_BINS}
-	sys-devel/automake:1.14
-	static? (
-		>=dev-libs/libassuan-2[static-libs]
-		>=dev-libs/libgcrypt-1.4[static-libs]
-		>=dev-libs/libgpg-error-1.7[static-libs]
-		>=dev-libs/libksba-1.0.7[static-libs]
-		>=dev-libs/pth-1.3.7[static-libs]
-		>=net-misc/curl-7.10[static-libs]
-		sys-libs/zlib[static-libs]
-		bzip2? ( app-arch/bzip2[static-libs] )
-	)
 	nls? ( sys-devel/gettext )
 	doc? ( sys-apps/texinfo )"
 
-RDEPEND="!static? ( ${COMMON_DEPEND_LIBS} )
+RDEPEND="${COMMON_DEPEND_LIBS}
 	${COMMON_DEPEND_BINS}
-	!<=app-crypt/gnupg-2.0.1
 	selinux? ( sec-policy/selinux-gpg )
 	nls? ( virtual/libintl )"
-
-REQUIRED_USE="smartcard? ( !static )"
 
 S="${WORKDIR}/${MY_P}"
 
 src_prepare() {
+	default
+	if [[ ${PV} == *9999* ]]; then
+		epatch "${FILESDIR}"/${P}-g10-tofu.c-Specify-file-access-mode.patch \
+		"${FILESDIR}"/${P}-tests-pkits-Makefile.am-Remove-failing-tests.patch
+	fi
+
 	epatch_user
-	autoreconf || die "Autoreconf fail"
-	./autogen.sh || die "Autgen script failed"
+	if [[ ${PV} == *9999* ]]; then
+		autoreconf || die
+		./autogen.sh || die
+	fi
 }
 
 src_configure() {
 	local myconf=()
-
-	# 'USE=static' support was requested:
-	# gnupg1: bug #29299
-	# gnupg2: bug #159623
-	use static && append-ldflags -static
 
 	if use smartcard; then
 		myconf+=(
@@ -91,11 +91,22 @@ src_configure() {
 		myconf+=( --enable-symcryptrun )
 	fi
 
+	# glib fails and picks up clang's internal stdint.h causing weird errors
+	[[ ${CC} == *clang ]] && \
+		export gl_cv_absolute_stdint_h=/usr/include/stdint.h
+
+	maintainer_mode=""
+	
+	if [[ ${PV} == *9999* ]]; then
+		maintainer_mode+="--enable-maintainer-mode "
+	fi
+
 	econf \
-		--enable-maintainer-mode \
+		${maintainer_mode} \
 		--docdir="${EPREFIX}/usr/share/doc/${PF}" \
 		--enable-gpg \
 		--enable-gpgsm \
+		--enable-large-secmem \
 		--without-adns \
 		"${myconf[@]}" \
 		$(use_enable bzip2) \
@@ -103,6 +114,9 @@ src_configure() {
 		$(use_with ldap) \
 		$(use_enable nls) \
 		$(use_with readline) \
+		$(use_enable tofu) \
+		$(use_enable tools) \
+		$(use_enable tools wks-tools) \
 		CC_FOR_BUILD="$(tc-getBUILD_CC)"
 }
 
@@ -122,7 +136,9 @@ src_install() {
 		tools/{gpg-zip,gpgconf,gpgsplit,lspgpot,mail-signed-keys,make-dns-cert}
 
 	emake DESTDIR="${D}" -f doc/Makefile uninstall-nobase_dist_docDATA
-	rm "${ED}"/usr/share/gnupg/help* || die
+	# The help*txt files are read from the datadir by GnuPG directly.
+	# They do not work if compressed or moved!
+	#rm "${ED}"/usr/share/gnupg/help* || die
 
 	dodoc ChangeLog NEWS README THANKS TODO VERSION doc/FAQ doc/DETAILS \
 		doc/HACKING doc/TRANSLATE doc/OpenPGP doc/KEYSERVER doc/help*
@@ -164,7 +180,7 @@ pkg_postinst() {
 	ewarn "and to start a fresh daemon just run 'gpg-agent --daemon'."
 
 	if [[ -n ${REPLACING_VERSIONS} ]]; then
-		elog "If upgrading from a version prior than 2.1 you will have to re-import"
+		elog "If upgrading from a version prior than 2.1 you might have to re-import"
 		elog "secret keys after restarting the gpg-agent as the new version is using"
 		elog "a new storage mechanism."
 		elog "You can migrate the keys using gpg --import \$HOME/.gnupg/secring.gpg"

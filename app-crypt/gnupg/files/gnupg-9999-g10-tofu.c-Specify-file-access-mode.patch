@@ -1,0 +1,26 @@
+From fb4925fb62393e5c947c3994df82336d4cfda741 Mon Sep 17 00:00:00 2001
+From: Kristian Fiskerstrand <kf@sumptuouscapital.com>
+Date: Thu, 17 Nov 2016 22:16:11 +0100
+Subject: [PATCH] (g10/tofu.c) Specify file access mode
+
+Specify explicit file access mode for open
+---
+ g10/tofu.c | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/g10/tofu.c b/g10/tofu.c
+index 03d8ebe..0794405 100644
+--- a/g10/tofu.c
++++ b/g10/tofu.c
+@@ -732,7 +732,7 @@ busy_handler (void *cookie, int call_count)
+          process will have to wait a bit longer, but otherwise nothing
+          horrible should happen.  */
+ 
+-      int fd = open (dbs->want_lock_file, O_CREAT);
++      int fd = open (dbs->want_lock_file, O_RDWR, O_CREAT);
+       if (fd == -1)
+         log_debug ("TOFU: Error opening '%s': %s\n",
+                    dbs->want_lock_file, strerror (errno));
+-- 
+2.7.3
+
