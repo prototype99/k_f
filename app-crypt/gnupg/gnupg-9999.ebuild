@@ -20,13 +20,12 @@ if [[ ${PV} != *9999* ]]; then
 	KEYWORDS="~alpha ~amd64 ~arm ~arm64 ~hppa ~ia64 ~m68k ~mips ~ppc ~ppc64 ~s39    0 ~sh ~sparc ~x86"
 else
 	KEYWORDS=""
-	WANT_AUTOMAKE=1.14
 	EGIT_REPO_URI="git://git.gnupg.org/${PN}.git"
 fi
 
 SLOT="0"
 KEYWORDS=""
-IUSE="bzip2 doc +gnutls ldap nls readline selinux smartcard +system-cert-store tofu tools usb"
+IUSE="bzip2 doc +gnutls ldap nls readline selinux +smartcard tofu tools usb wks-server"
 
 COMMON_DEPEND_LIBS="
 	>=dev-libs/npth-1.2
@@ -62,8 +61,7 @@ S="${WORKDIR}/${MY_P}"
 src_prepare() {
 	default
 	if [[ ${PV} == *9999* ]]; then
-		epatch "${FILESDIR}"/${P}-g10-tofu.c-Specify-file-access-mode.patch \
-		"${FILESDIR}"/${P}-tests-pkits-Makefile.am-Remove-failing-tests.patch
+		epatch "${FILESDIR}"/${P}-tests-pkits-Makefile.am-Remove-failing-tests.patch
 	fi
 
 	epatch_user
@@ -96,7 +94,7 @@ src_configure() {
 		export gl_cv_absolute_stdint_h=/usr/include/stdint.h
 
 	maintainer_mode=""
-	
+
 	if [[ ${PV} == *9999* ]]; then
 		maintainer_mode+="--enable-maintainer-mode "
 	fi
@@ -131,7 +129,14 @@ src_compile() {
 
 src_install() {
 	default
+	
+	if ! use wks-server; then
+		rm -f "${D}/usr/bin/gpg-wks-server" || die
+	fi
 
+	use tools && dobin tools/{convert-from-106,gpg-check-pattern} \
+		tools/{gpg-zip,gpgconf,gpgsplit,lspgpot,mail-signed-keys} \
+		tools/make-dns-cert
 	emake DESTDIR="${D}" -f doc/Makefile uninstall-nobase_dist_docDATA
 
 	dodoc ChangeLog NEWS README THANKS TODO VERSION doc/FAQ doc/DETAILS \
@@ -147,14 +152,5 @@ src_install() {
 
 	if use doc; then
 		dohtml doc/gnupg.html/* doc/*.png
-	fi
-}
-
-pkg_postinst() {
-	if [[ -n ${REPLACING_VERSIONS} ]]; then
-		elog "If upgrading from a version prior than 2.1 you might have to re-import"
-		elog "secret keys after restarting the gpg-agent as the new version is using"
-		elog "a new storage mechanism."
-		elog "You can migrate the keys using gpg --import \$HOME/.gnupg/secring.gpg"
 	fi
 }
