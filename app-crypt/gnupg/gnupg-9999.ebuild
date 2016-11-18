@@ -113,7 +113,7 @@ src_configure() {
 		$(use_with readline) \
 		$(use_enable tofu) \
 		$(use_enable tools) \
-		$(use_enable tools wks-tools) \
+		$(use_enable wks-server wks-tools) \
 		CC_FOR_BUILD="$(tc-getBUILD_CC)"
 }
 
@@ -128,10 +128,6 @@ src_compile() {
 
 src_install() {
 	default
-	
-	if ! use wks-server; then
-		rm -f "${D}/usr/bin/gpg-wks-server" || die
-	fi
 
 	use tools && dobin tools/{convert-from-106,gpg-check-pattern} \
 		tools/{gpg-zip,gpgconf,gpgsplit,lspgpot,mail-signed-keys} \
