@@ -17,14 +17,13 @@ LICENSE="GPL-3"
 if [[ ${PV} != *9999* ]]; then
 	MY_P="${P/_/-}"
 	SRC_URI="mirror://gnupg/gnupg/${MY_P}.tar.bz2"
-	KEYWORDS="~alpha ~amd64 ~arm ~arm64 ~hppa ~ia64 ~m68k ~mips ~ppc ~ppc64 ~s39    0 ~sh ~sparc ~x86"
+	KEYWORDS="~alpha ~amd64 ~arm ~arm64 ~hppa ~ia64 ~m68k ~mips ~ppc ~ppc64 ~s39 ~sh ~sparc ~x86"
 else
 	KEYWORDS=""
 	EGIT_REPO_URI="git://git.gnupg.org/${PN}.git"
 fi
 
 SLOT="0"
-KEYWORDS=""
 IUSE="bzip2 doc +gnutls ldap nls readline selinux +smartcard tofu tools usb wks-server"
 
 COMMON_DEPEND_LIBS="
