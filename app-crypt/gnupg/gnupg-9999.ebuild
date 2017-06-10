@@ -48,7 +48,9 @@ COMMON_DEPEND_BINS="app-crypt/pinentry
 DEPEND="${COMMON_DEPEND_LIBS}
 	${COMMON_DEPEND_BINS}
 	nls? ( sys-devel/gettext )
-	doc? ( sys-apps/texinfo )"
+	doc? ( sys-apps/texinfo 
+           media-gfx/imagemagick
+           media-gfx/transfig )"
 
 RDEPEND="${COMMON_DEPEND_LIBS}
 	${COMMON_DEPEND_BINS}
@@ -56,7 +58,6 @@ RDEPEND="${COMMON_DEPEND_LIBS}
 	nls? ( virtual/libintl )"
 
 S="${WORKDIR}/${MY_P}"
-
 src_prepare() {
 	default
 	if [[ ${PV} == *9999* ]]; then
