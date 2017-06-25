@@ -12,7 +12,7 @@ HOMEPAGE="http://apps.owncloud.com/content/show.php/News?content=168040"
 LICENSE="AGPL"
 SLOT="0"
 IUSE=""
-SRC_URI="https://apps.owncloud.com/CONTENT/content-files/174796-news.zip -> c${P}.tar.gz"
+SRC_URI="https://apps.owncloud.com/CONTENT/content-files/174796-news.zip -> c${P}.zip"
 
 KEYWORDS="~amd64 ~x86"
 
