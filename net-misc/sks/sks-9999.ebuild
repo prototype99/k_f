@@ -1,4 +1,4 @@
-# Copyright 1999-2013 Gentoo Foundation
+# Copyright 1999-2017 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/net-misc/sks/sks-1.1.2.ebuild,v 1.4 2012/02/07 00:34:06 kingtaco Exp $
 
@@ -58,10 +58,8 @@ src_prepare() {
 		-e "s:^MANDIR=.*$:MANDIR=${D}/usr/share/man:g" \
 		Makefile.local || die
 	sed -i \
-		-e 's:^CAMLINCLUDE= -I lib -I bdb$:CAMLINCLUDE= -I lib -I bdb -I +cryptokit:g' \
-		-e 's:-Werror-implicit-function-declaration::g' \
         -e 's:WARNERR=-warn-error A:WARNERR=:g' \
-		Makefile bdb/Makefile || die
+		Makefile || die
 	sed -i \
 		-e 's:/usr/sbin/sks:/usr/bin/sks:g' \
 		sks_build.sh || die
